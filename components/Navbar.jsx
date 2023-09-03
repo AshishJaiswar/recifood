@@ -18,6 +18,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { Menu, Search, User, Settings, LogOut } from "lucide-react";
 
@@ -28,7 +29,7 @@ function Navbar() {
     <nav className="pt-2 flex justify-between items-center">
       <Image src="/logo.svg" width={100} height={50} alt="ReciFood" />
       {/* Search Input Desktop */}
-      <div className="hidden w-full max-w-sm items-center space-x-2 md:flex">
+      <div className="hidden w-full max-w-sm items-center space-x-2 lg:flex">
         <Input type="text" placeholder="Search recipe" />
         <Button
           variant="outline"
@@ -39,130 +40,145 @@ function Navbar() {
         </Button>
       </div>
       {/* Search Input Mobile */}
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <Button variant="ghost" size="icon">
           <Search size={30} strokeWidth={1} color="#393E41" />
         </Button>
       </div>
-      {/* Menu for Desktop */}
-      <NavigationMenu className="hidden md:block">
-        <NavigationMenuList>
+
+      <div className="flex items-center justify-center">
+        {/* Menu for Desktop */}
+        <NavigationMenu className="hidden md:block">
+          <NavigationMenuList>
+            {isLoggedIn ? (
+              <NavigationMenuItem>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Home
+                  </NavigationMenuLink>
+                </Link>
+                <Link href="/courses" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Courses
+                  </NavigationMenuLink>
+                </Link>
+                <Link href="/cuisines" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Cuisines
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            ) : (
+              <NavigationMenuItem>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} mr-2`}
+                  >
+                    Sign in
+                  </NavigationMenuLink>
+                </Link>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} bg-primary text-slate-50`}
+                  >
+                    Sign up
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            )}
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        {/* Menu for Mobile */}
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            {isLoggedIn ? (
+              <Avatar className="md:ml-2">
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            ) : (
+              <Menu
+                size={30}
+                strokeWidth={1}
+                color="#393E41"
+                className="md:hidden"
+              />
+            )}
+          </DropdownMenuTrigger>
           {isLoggedIn ? (
-            <NavigationMenuItem>
+            <DropdownMenuContent>
+              <DropdownMenuLabel className="md:hidden">Menu</DropdownMenuLabel>
+              <DropdownMenuSeparator className="md:hidden" />
               <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <DropdownMenuItem className="cursor-pointer md:hidden">
                   Home
-                </NavigationMenuLink>
+                </DropdownMenuItem>
               </Link>
               <Link href="/courses" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <DropdownMenuItem className="cursor-pointer md:hidden">
                   Courses
-                </NavigationMenuLink>
+                </DropdownMenuItem>
               </Link>
               <Link href="/cuisines" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <DropdownMenuItem className="cursor-pointer md:hidden">
                   Cuisines
-                </NavigationMenuLink>
+                </DropdownMenuItem>
               </Link>
-            </NavigationMenuItem>
+              <DropdownMenuSeparator className="md:hidden" />
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <Link href="/" legacyBehavior passHref>
+                <DropdownMenuItem className="cursor-pointer">
+                  <User
+                    size={20}
+                    strokeWidth={1}
+                    color="#393E41"
+                    className="mr-1"
+                  />
+                  Profile
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/courses" legacyBehavior passHref>
+                <DropdownMenuItem className="cursor-pointer">
+                  <Settings
+                    size={20}
+                    strokeWidth={1}
+                    color="#393E41"
+                    className="mr-1"
+                  />
+                  Settings
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/" legacyBehavior passHref>
+                <DropdownMenuItem className="!text-red-600 cursor-pointer">
+                  <LogOut
+                    size={20}
+                    strokeWidth={1}
+                    color="#393E41"
+                    className="mr-1"
+                  />
+                  Logout
+                </DropdownMenuItem>
+              </Link>
+            </DropdownMenuContent>
           ) : (
-            <NavigationMenuItem>
+            <DropdownMenuContent>
               <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} mr-2`}
-                >
+                <DropdownMenuItem className="cursor-pointer h-10 font-medium justify-center">
                   Sign in
-                </NavigationMenuLink>
+                </DropdownMenuItem>
               </Link>
+              <DropdownMenuSeparator />
               <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} bg-primary text-slate-50`}
-                >
+                <DropdownMenuItem className="cursor-pointer h-10 font-medium bg-primary text-slate-50 justify-center">
                   Sign up
-                </NavigationMenuLink>
+                </DropdownMenuItem>
               </Link>
-            </NavigationMenuItem>
+            </DropdownMenuContent>
           )}
-        </NavigationMenuList>
-      </NavigationMenu>
-
-      {/* Menu for Mobile */}
-      <DropdownMenu>
-        <DropdownMenuTrigger className="md:hidden">
-          <Menu size={30} strokeWidth={1} color="#393E41" />
-        </DropdownMenuTrigger>
-        {isLoggedIn ? (
-          <DropdownMenuContent className="md:hidden">
-            <DropdownMenuLabel>Menu</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <Link href="/" legacyBehavior passHref>
-              <DropdownMenuItem className="cursor-pointer">
-                Home
-              </DropdownMenuItem>
-            </Link>
-            <Link href="/courses" legacyBehavior passHref>
-              <DropdownMenuItem className="cursor-pointer">
-                Courses
-              </DropdownMenuItem>
-            </Link>
-            <Link href="/cuisines" legacyBehavior passHref>
-              <DropdownMenuItem className="cursor-pointer">
-                Cuisines
-              </DropdownMenuItem>
-            </Link>
-            <DropdownMenuSeparator />
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <Link href="/" legacyBehavior passHref>
-              <DropdownMenuItem className="cursor-pointer">
-                <User
-                  size={20}
-                  strokeWidth={1}
-                  color="#393E41"
-                  className="mr-1"
-                />
-                Profile
-              </DropdownMenuItem>
-            </Link>
-            <Link href="/courses" legacyBehavior passHref>
-              <DropdownMenuItem className="cursor-pointer">
-                <Settings
-                  size={20}
-                  strokeWidth={1}
-                  color="#393E41"
-                  className="mr-1"
-                />
-                Settings
-              </DropdownMenuItem>
-            </Link>
-            <Link href="/" legacyBehavior passHref>
-              <DropdownMenuItem className="!text-red-600 cursor-pointer">
-                <LogOut
-                  size={20}
-                  strokeWidth={1}
-                  color="#393E41"
-                  className="mr-1"
-                />
-                Logout
-              </DropdownMenuItem>
-            </Link>
-          </DropdownMenuContent>
-        ) : (
-          <DropdownMenuContent>
-            <Link href="/" legacyBehavior passHref>
-              <DropdownMenuItem className="cursor-pointer h-10 font-medium justify-center">
-                Sign in
-              </DropdownMenuItem>
-            </Link>
-            <DropdownMenuSeparator />
-            <Link href="/" legacyBehavior passHref>
-              <DropdownMenuItem className="cursor-pointer h-10 font-medium bg-primary text-slate-50 justify-center">
-                Sign up
-              </DropdownMenuItem>
-            </Link>
-          </DropdownMenuContent>
-        )}
-      </DropdownMenu>
+        </DropdownMenu>
+      </div>
     </nav>
   );
 }
