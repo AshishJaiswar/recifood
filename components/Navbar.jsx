@@ -23,7 +23,7 @@ import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { Menu, Search, User, Settings, LogOut } from "lucide-react";
 
 function Navbar() {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <nav className="pt-2 flex justify-between items-center">
@@ -70,16 +70,16 @@ function Navbar() {
               </NavigationMenuItem>
             ) : (
               <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
+                <Link href="/login" legacyBehavior passHref>
                   <NavigationMenuLink
                     className={`${navigationMenuTriggerStyle()} mr-2`}
                   >
                     Sign in
                   </NavigationMenuLink>
                 </Link>
-                <Link href="/" legacyBehavior passHref>
+                <Link href="/login" legacyBehavior passHref>
                   <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} bg-primary text-slate-50`}
+                    className={`${navigationMenuTriggerStyle()} bg-primary text-slate-50 hover:bg-violet-600 hover:text-slate-50 active:bg-violet-600 active:text-slate-50`}
                   >
                     Sign up
                   </NavigationMenuLink>
