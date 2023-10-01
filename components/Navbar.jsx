@@ -24,6 +24,7 @@ import { Menu, Search, User, Settings, LogOut } from "lucide-react";
 
 function Navbar() {
   const isLoggedIn = true;
+  const active = "text-primary";
 
   return (
     <nav id="nav-container" className="pt-2 flex justify-between items-center">
@@ -54,18 +55,24 @@ function Navbar() {
             {isLoggedIn ? (
               <NavigationMenuItem>
                 <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} text-base ${active}`}
+                  >
                     Home
                   </NavigationMenuLink>
                 </Link>
-                <Link href="/courses" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Courses
+                <Link href="/categories" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} text-base text-slate-600`}
+                  >
+                    Categories
                   </NavigationMenuLink>
                 </Link>
-                <Link href="/cuisines" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Cuisines
+                <Link href="/recipes" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} text-base text-slate-600`}
+                  >
+                    Recipes
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -116,14 +123,14 @@ function Navbar() {
                   Home
                 </DropdownMenuItem>
               </Link>
-              <Link href="/courses" legacyBehavior passHref>
+              <Link href="/categories" legacyBehavior passHref>
                 <DropdownMenuItem className="nav-item cursor-pointer md:hidden">
-                  Courses
+                  Categories
                 </DropdownMenuItem>
               </Link>
-              <Link href="/cuisines" legacyBehavior passHref>
+              <Link href="/recipes" legacyBehavior passHref>
                 <DropdownMenuItem className="nav-item cursor-pointer md:hidden">
-                  Cuisines
+                  Recipes
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuSeparator className="md:hidden" />

@@ -1,5 +1,7 @@
 import { Dices, Pizza, CakeSlice, Soup, Citrus } from "lucide-react";
-import { Button } from "./ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
+import { Button } from "../ui/button";
 
 function Hero() {
   return (
@@ -20,7 +22,7 @@ function Hero() {
       <div id="info" className="mt-4 text-sm sm:text-base sm:mt-6">
         Press space to generate a random recipe
       </div>
-      <div className="my-16 md:my-28">
+      <div id="course-container" className="my-16 md:my-28">
         <h2
           id="course-heading"
           className="text-xl font-medium text-slate-700 sm:text-3xl px-10 sm:px-16 lg:px-40 xl:px-60"
@@ -28,26 +30,26 @@ function Hero() {
           What culinary course ignites your appetite today?
         </h2>
         <div className="grid gap-4 grid-cols-2 grid-rows-2 my-5 sm:my-8 sm:px-20 lg:grid-cols-4 lg:grid-rows-1 xl:px-40">
-          <Button variant="secondary">
+          <Link className={buttonVariants({ variant: "secondary" })} href="">
             <Pizza className="course-item mr-2" size={20} strokeWidth={1.5} />
             Appetizers
-          </Button>
-          <Button variant="secondary">
+          </Link>
+          <Link className={buttonVariants({ variant: "secondary" })} href="">
             <Soup className="course-item mr-2" size={20} strokeWidth={1.5} />
             Main Course
-          </Button>
-          <Button variant="secondary">
+          </Link>
+          <Link className={buttonVariants({ variant: "secondary" })} href="">
             <Citrus className="course-item mr-2" size={20} strokeWidth={1.5} />
             Side Dish
-          </Button>
-          <Button variant="secondary">
+          </Link>
+          <Link className={buttonVariants({ variant: "secondary" })} href="">
             <CakeSlice
               className="course-item mr-2"
               size={20}
               strokeWidth={1.5}
             />
             Desserts
-          </Button>
+          </Link>
         </div>
         <div className="text-center">
           <Button variant="link">View All --&gt;</Button>
@@ -61,24 +63,24 @@ function Hero() {
           Explore Indian Flavors
         </h2>
         <div className="grid gap-4 grid-cols-2 grid-rows-2 my-5 sm:my-8 sm:px-20 lg:grid-cols-3 lg:grid-rows-1 xl:px-40">
-          <Button variant="secondary" className="cuisine-item">
+          <Link className={buttonVariants({ variant: "secondary" })} href="">
             Punjabi
-          </Button>
-          <Button variant="secondary" className="cuisine-item">
+          </Link>
+          <Link className={buttonVariants({ variant: "secondary" })} href="">
             Maharashtrian
-          </Button>
-          <Button variant="secondary" className="cuisine-item">
+          </Link>
+          <Link className={buttonVariants({ variant: "secondary" })} href="">
             South Indian
-          </Button>
-          <Button variant="secondary" className="cuisine-item">
+          </Link>
+          <Link className={buttonVariants({ variant: "secondary" })} href="">
             Gujarati
-          </Button>
-          <Button variant="secondary" className="cuisine-item">
+          </Link>
+          <Link className={buttonVariants({ variant: "secondary" })} href="">
             Rajasthani
-          </Button>
-          <Button variant="secondary" className="cuisine-item">
+          </Link>
+          <Link className={buttonVariants({ variant: "secondary" })} href="">
             North Indian
-          </Button>
+          </Link>
         </div>
         <div className="text-center">
           <Button variant="link" className="view-all">
