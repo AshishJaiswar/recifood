@@ -1,7 +1,15 @@
-import React from "react";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import Filters from "@/components/Filters";
 
 function Recipes() {
-  return <div>Recipes</div>;
+  return (
+    <>
+      <Navbar />
+      <Filters />
+      <Footer />
+    </>
+  );
 }
 
 export default Recipes;

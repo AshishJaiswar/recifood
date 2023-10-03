@@ -1,7 +1,7 @@
 import { Dices, Pizza, CakeSlice, Soup, Citrus } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 
 function Hero() {
   return (
