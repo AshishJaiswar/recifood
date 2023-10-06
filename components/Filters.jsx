@@ -107,8 +107,8 @@ function Filters() {
               Prep Time <ChevronDown size={20} strokeWidth={1.6} />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-56 max-h-96 overflow-y-auto">
-            <TimeInput />
+          <PopoverContent className="w-64 max-h-96 overflow-y-auto">
+            <TimeInput filterLabel="Prep" />
           </PopoverContent>
         </Popover>
         <Popover>
@@ -117,8 +117,8 @@ function Filters() {
               Cooking Time <ChevronDown size={20} strokeWidth={1.6} />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-56 max-h-96 overflow-y-auto">
-            <TimeInput />
+          <PopoverContent className="w-64 max-h-96 overflow-y-auto">
+            <TimeInput filterLabel="Cooking" />
           </PopoverContent>
         </Popover>
       </div>

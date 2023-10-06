@@ -28,7 +28,15 @@ function Navbar() {
 
   return (
     <nav id="nav-container" className="pt-2 flex justify-between items-center">
-      <Image id="logo" src="/logo.svg" width={100} height={50} alt="ReciFood" />
+      <Link href="/">
+        <Image
+          id="logo"
+          src="/logo.svg"
+          width={100}
+          height={50}
+          alt="ReciFood"
+        />
+      </Link>
       {/* Search Input Desktop */}
       <div className="hidden w-full max-w-sm items-center space-x-2 lg:flex">
         <Input id="search-input" type="text" placeholder="Search recipe" />
