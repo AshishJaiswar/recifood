@@ -1,16 +1,12 @@
-import Filters from "@/components/Filters";
 import RecipeCard from "@/components/RecipeCard";
 
-function Recipes() {
+function SearchResult() {
   return (
     <>
-      <Filters />
       <div>
-        <h3 className="text-lg font-medium my-4 sm:text-2xl">Recipies</h3>
-        <p>
-          6000+ recipes and counting! Dive into our kitchen and find your next
-          culinary masterpiece
-        </p>
+        <h2 className="text-lg font-medium mt-4 sm:text-2xl sm:mt-8">
+          Search results for <span className="font-bold">“Mutter Panner”</span>
+        </h2>
       </div>
       <div className="grid gap-4 my-10 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
         <RecipeCard dietType="veg" />
@@ -21,4 +17,4 @@ function Recipes() {
   );
 }
 
-export default Recipes;
+export default SearchResult;

@@ -79,6 +79,10 @@
   width: 8px;
 }
 
+*::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
 *::-webkit-scrollbar-track {
   background: rgb(207, 207, 207);
   border-radius: 10px;

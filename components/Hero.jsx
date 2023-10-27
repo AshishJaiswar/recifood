@@ -1,24 +1,94 @@
+"use client";
+
 import { Dices, Pizza, CakeSlice, Soup, Citrus } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import RandomFilter from "./RandomFilter";
+import ConfettiGenerator from "confetti-js";
+import useSound from "use-sound";
+import { useState } from "react";
 
-function Hero() {
+function Home() {
+  const [recipe, setRecipe] = useState("");
+  const [play] = useSound("/confetti.mp3");
+
+  const generateConfetti = () => {
+    const confettiSettings = {
+      target: "my-canvas",
+      max: "500",
+      size: "1",
+      animate: true,
+      props: ["circle", "square", "triangle"],
+      colors: [
+        [165, 104, 246],
+        [230, 61, 135],
+        [0, 199, 228],
+        [253, 214, 126],
+      ],
+      clock: "30",
+      rotate: true,
+      height: "500",
+      start_from_edge: true,
+      respawn: false,
+    };
+    const confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+
+    return () => confetti.clear();
+  };
+  const recipes = [
+    "Fried Rice",
+    "Biryani",
+    "Chicken curry",
+    "Frankie",
+    "Soup",
+    "Cake",
+    "Bread",
+    "Masala papad",
+  ];
+
+  const handleClick = () => {
+    const max = recipes.length;
+    const randomNum = Math.floor(Math.random() * max);
+
+    let count = 0;
+    const timer = setInterval(() => {
+      if (count < max) {
+        setRecipe(recipes[count]);
+        count++;
+      } else count = 0;
+    }, 100);
+
+    setTimeout(() => {
+      clearInterval(timer);
+      setRecipe(recipes[randomNum]);
+      count = 0;
+      generateConfetti();
+      play();
+    }, 3000);
+  };
+
   return (
-    <div id="hero-container" className="text-center">
+    <div id="hero-container" className="relative text-center">
+      <canvas
+        id="my-canvas"
+        className="absolute -z-10 w-full rounded-3xl"
+      ></canvas>
       <h1
         id="hero-title"
-        className="text-3xl font-medium mt-10 mb-10 px-5 sm:px-16 md:mb-20 md:text-5xl md:mt-14 lg:mt-20 lg:text-7xl xl:px-52"
+        className="text-3xl font-medium px-5 py-10 md:py-14 lg:py-20 sm:px-16 md:text-5xl lg:text-7xl xl:px-52"
       >
-        Generate a random recipe
+        {recipe || <span>Generate a random recipe</span>}
       </h1>
+      <RandomFilter />
       <Button
         id="generate-btn"
         className="md:text-lg md:px-8 md:py-6 hover:bg-violet-600 active:bg-violet-600"
+        onClick={handleClick}
       >
         Generate <Dices className="ml-3" />
       </Button>
-
       <div id="info" className="mt-4 text-sm sm:text-base sm:mt-6">
         Press space to generate a random recipe
       </div>
@@ -52,7 +122,9 @@ function Hero() {
           </Link>
         </div>
         <div className="text-center">
-          <Button variant="link">View All --&gt;</Button>
+          <Link className={buttonVariants({ variant: "link" })} href="">
+            View All --&gt;
+          </Link>
         </div>
       </div>
       <div id="cuisine-container" className="my-16 md:my-28">
@@ -83,13 +155,13 @@ function Hero() {
           </Link>
         </div>
         <div className="text-center">
-          <Button variant="link" className="view-all">
+          <Link className={buttonVariants({ variant: "link" })} href="">
             View All --&gt;
-          </Button>
+          </Link>
         </div>
       </div>
     </div>
   );
 }
 
-export default Hero;
+export default Home;
