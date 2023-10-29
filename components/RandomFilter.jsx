@@ -7,11 +7,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
 
 function RandomFilter() {
+  const [filter, setFilter] = useState({
+    meal: "",
+    cuisine: "",
+    diet: "",
+  });
+
   return (
     <div className="flex flex-col justify-center items-center mb-4 sm:flex sm:flex-row sm:justify-center sm:mb-8">
-      <Select>
+      <Select onValueChange={(value) => setFilter({ ...filter, meal: value })}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select a Meal" />
         </SelectTrigger>
@@ -26,7 +33,9 @@ function RandomFilter() {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Select>
+      <Select
+        onValueChange={(value) => setFilter({ ...filter, cuisine: value })}
+      >
         <SelectTrigger className="w-[180px] my-2 mx-5 sm:my-0">
           <SelectValue placeholder="Select a Cuisine" />
         </SelectTrigger>
@@ -41,7 +50,7 @@ function RandomFilter() {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Select>
+      <Select onValueChange={(value) => setFilter({ ...filter, diet: value })}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select a Diet" />
         </SelectTrigger>

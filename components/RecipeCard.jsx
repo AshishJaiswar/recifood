@@ -23,7 +23,7 @@ function RecipeCard({ dietType }) {
         </h4>
         <div className="text-sm text-slate-500 flex flex-wrap sm:text-base">
           Indian <Dot /> Breakfast <Dot />
-          <span className="flex">
+          <span className="flex text-orange-500">
             <Flame size={20} strokeWidth={1.6} /> 120 Cal
           </span>
         </div>
