@@ -3,10 +3,10 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import Generate from "./Generate";
 
-async function Hero() {
+async function Hero({ filters }) {
   return (
     <div id="hero-container" className="relative text-center">
-      <Generate />
+      <Generate filters={filters} />
       <div id="course-container" className="my-16 md:my-28">
         <h2
           id="course-heading"

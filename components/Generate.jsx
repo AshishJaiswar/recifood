@@ -8,12 +8,15 @@ import ConfettiGenerator from "confetti-js";
 import useSound from "use-sound";
 import { useState } from "react";
 import recipeSet from "@/lib/recipesSet";
-import Link from "next/link";
 
-function Generate() {
+function Generate({ filters }) {
   const [recipe, setRecipe] = useState({});
   const [recipeName, setRecipeName] = useState("");
   const [ConfettiPlay] = useSound("/confetti.mp3");
+  const [filterBy, setFilter] = useState({
+    meal: "random",
+    diet: "random",
+  });
 
   // Generating Random number
   const getRandomNumber = (max) => {
@@ -49,11 +52,29 @@ function Generate() {
   // Fetching random recipe on click of Generate button
 
   async function getRecipe() {
-    const count = await fetch("/api/count");
-    const max = await count.json();
-    const randomId = getRandomNumber(max);
+    const res = await fetch("/api/random", {
+      cache: "no-store",
+    });
 
-    const res = await fetch(`/api/recipe/${randomId}`, {
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+  }
+
+  async function getFilteredRecipe() {
+    const meal = filterBy.meal;
+    const diet = filterBy.diet;
+    let url;
+    if (meal !== "random" && diet !== "random") {
+      url = `/api/random/filterby?meal=${meal}&diet=${diet}`;
+    } else if (meal !== "random" && diet === "random") {
+      url = `/api/random/filterby?meal=${meal}`;
+    } else if (meal === "random" && diet !== "random") {
+      url = `/api/random/filterby?diet=${diet}`;
+    }
+    const res = await fetch(url, {
       cache: "no-store",
     });
 
@@ -78,9 +99,19 @@ function Generate() {
       } else count = 0;
     }, 200);
 
-    const data = await getRecipe();
-    setRecipe(data[0]);
-    const { name } = data[0];
+    let name;
+    if (filterBy.meal === "random" && filterBy.diet === "random") {
+      const data = await getRecipe();
+      setRecipe(data[0]);
+      name = data[0]?.name;
+    } else {
+      const data = await getFilteredRecipe();
+      const dataSize = data.length;
+      const randomNum = getRandomNumber(dataSize);
+      const recipe = data[randomNum];
+      setRecipe(recipe);
+      name = recipe?.name;
+    }
 
     setTimeout(() => {
       clearInterval(timer);
@@ -107,7 +138,10 @@ function Generate() {
           <span>Generate a random recipe</span>
         )}
       </h1>
-      <RandomFilter />
+      <RandomFilter
+        filters={filters}
+        handleSelect={(item) => setFilter({ ...filterBy, ...item })}
+      />
       <Button
         id="generate-btn"
         className="md:text-lg md:px-8 md:py-6 hover:bg-violet-600 active:bg-violet-600"

@@ -7,59 +7,40 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
 
-function RandomFilter() {
-  const [filter, setFilter] = useState({
-    meal: "",
-    cuisine: "",
-    diet: "",
-  });
-
+function RandomFilter({ filters, handleSelect }) {
   return (
     <div className="flex flex-col justify-center items-center mb-4 sm:flex sm:flex-row sm:justify-center sm:mb-8">
-      <Select onValueChange={(value) => setFilter({ ...filter, meal: value })}>
-        <SelectTrigger className="w-[180px]">
+      <Select onValueChange={(value) => handleSelect({ meal: value })}>
+        <SelectTrigger className="w-[180px] lg:w-[200px] m-2">
           <SelectValue placeholder="Select a Meal" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="h-72 overflow-y-scroll">
           <SelectGroup>
             <SelectLabel>Meals</SelectLabel>
             <SelectItem value="random">Random</SelectItem>
-            <SelectItem value="apple">Snacks</SelectItem>
-            <SelectItem value="banana">Breakfast</SelectItem>
-            <SelectItem value="blueberry">Lunch</SelectItem>
-            <SelectItem value="grapes">Dinner</SelectItem>
+            {filters.meal.map(({ course }, index) => (
+              <SelectItem key={index} value={course}>
+                {course}
+              </SelectItem>
+            ))}
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Select
-        onValueChange={(value) => setFilter({ ...filter, cuisine: value })}
-      >
-        <SelectTrigger className="w-[180px] my-2 mx-5 sm:my-0">
-          <SelectValue placeholder="Select a Cuisine" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Cuisine</SelectLabel>
-            <SelectItem value="random">Random</SelectItem>
-            <SelectItem value="indian">Indian</SelectItem>
-            <SelectItem value="chinese">Breakfast</SelectItem>
-            <SelectItem value="thai">Thai</SelectItem>
-            <SelectItem value="french">French</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-      <Select onValueChange={(value) => setFilter({ ...filter, diet: value })}>
-        <SelectTrigger className="w-[180px]">
+
+      <Select onValueChange={(value) => handleSelect({ diet: value })}>
+        <SelectTrigger className="w-[180px] lg:w-[200px] m-2">
           <SelectValue placeholder="Select a Diet" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="h-72 overflow-y-scroll">
           <SelectGroup>
             <SelectLabel>Diet</SelectLabel>
             <SelectItem value="random">Random</SelectItem>
-            <SelectItem value="veg">Veg</SelectItem>
-            <SelectItem value="non-veg">Non Veg</SelectItem>
+            {filters.diet.map(({ diet }, index) => (
+              <SelectItem key={index} value={diet}>
+                {diet}
+              </SelectItem>
+            ))}
           </SelectGroup>
         </SelectContent>
       </Select>
