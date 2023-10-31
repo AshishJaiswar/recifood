@@ -1,9 +1,12 @@
 import Filters from "@/components/Filters";
 import RecipeCard from "@/components/RecipeCard";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 function Recipes() {
   return (
     <>
+      <Navbar />
       <Filters />
       <div>
         <h3 className="text-lg font-medium my-4 sm:text-2xl">Recipies</h3>
@@ -17,6 +20,7 @@ function Recipes() {
         <RecipeCard dietType="non-veg" />
         <RecipeCard dietType="veg" />
       </div>
+      <Footer />
     </>
   );
 }

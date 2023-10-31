@@ -2,7 +2,10 @@ import { useEffect } from "react";
 
 export function useKeyPress(callback, keyCodes) {
   const handler = ({ code }) => {
-    event.preventDefault();
+    if (event.keyCode === 32) {
+      // If space is pressed prevent default behaviour
+      event.preventDefault();
+    }
     if (keyCodes.includes(code)) {
       callback();
     }

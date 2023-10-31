@@ -1,8 +1,11 @@
 import CategoryCard from "@/components/CategoryCard";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 function Categories() {
   return (
     <>
+      <Navbar />
       <div id="popular" className="my-6 lg:my-14">
         <h2 className="text-xl font-medium text-slate-700 my-4 sm:mb-8 sm:text-3xl">
           Most popular dishes
@@ -74,6 +77,7 @@ function Categories() {
           <CategoryCard />
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -54,8 +54,7 @@ function Generate({ filters }) {
     return () => confetti.clear();
   };
 
-  // Fetching random recipe on click of Generate button
-
+  // Fetching random recipe on click of Generate button/ Space key
   async function getRecipe() {
     const res = await fetch("/api/random", {
       cache: "no-store",
@@ -68,17 +67,27 @@ function Generate({ filters }) {
     return res.json();
   }
 
+  /* Fetching random recipe with filters on click of 
+  Generate button / Space key */
   async function getFilteredRecipe() {
     const meal = filterBy.meal;
     const diet = filterBy.diet;
     let url;
+
+    // Constructing url based on selected filter
     if (meal !== "random" && diet !== "random") {
+      // If both not selected random
       url = `/api/random/filterby?meal=${meal}&diet=${diet}`;
     } else if (meal !== "random" && diet === "random") {
+      /* If meal filter is set other than random such as 
+      `Lunch` and diet is set to random */
       url = `/api/random/filterby?meal=${meal}`;
     } else if (meal === "random" && diet !== "random") {
+      /* If meal filter is set to random and diet is set set 
+      other than random such as `Vegan` */
       url = `/api/random/filterby?diet=${diet}`;
     }
+
     const res = await fetch(url, {
       cache: "no-store",
     });
@@ -91,6 +100,10 @@ function Generate({ filters }) {
   }
 
   const handleClick = async () => {
+    /* Text animated effect
+    - 10 sets of predefined recipes names are kept in `lib/recipeSet.js` file
+    - We are randomly choosing a set and looping over array and updating recipeName state
+    */
     const setSize = recipeSet.length;
     const randomNum = getRandomNumber(setSize);
     const recipes = recipeSet[randomNum];
@@ -103,15 +116,21 @@ function Generate({ filters }) {
         count++;
       } else count = 0;
     }, 200);
+    // ------------------------------------------------------------------------------------
 
+    /* Fetching data from supabase via api and upadating recipeName state
+    this will be appended at the end.
+    */
     let name;
     let data;
     let dataSize;
     if (filterBy.meal === "random" && filterBy.diet === "random") {
+      // If filter not selected
       data = await getRecipe();
       setRecipe(data[0]);
       name = data[0]?.name;
     } else {
+      // If filter selected
       data = await getFilteredRecipe();
       dataSize = data.length;
       if (dataSize === 0) {
@@ -126,9 +145,10 @@ function Generate({ filters }) {
 
     setTimeout(() => {
       clearInterval(timer);
-      setRecipeName(name); // set recipe fetched from supabase
+      setRecipeName(name);
       count = 0;
       if (dataSize !== 0) {
+        // If returned data is empty [] then don't execute confetti
         generateConfetti();
         ConfettiPlay();
       }

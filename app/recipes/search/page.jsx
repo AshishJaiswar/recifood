@@ -1,8 +1,11 @@
 import RecipeCard from "@/components/RecipeCard";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 function SearchResult() {
   return (
     <>
+      <Navbar />
       <div>
         <h2 className="text-lg font-medium mt-4 sm:text-2xl sm:mt-8">
           Search results for <span className="font-bold">“Mutter Panner”</span>
@@ -13,6 +16,7 @@ function SearchResult() {
         <RecipeCard dietType="non-veg" />
         <RecipeCard dietType="veg" />
       </div>
+      <Footer />
     </>
   );
 }
