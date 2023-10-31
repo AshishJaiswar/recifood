@@ -1,7 +1,9 @@
 import Hero from "@/components/Hero";
 
 async function getAllMeals() {
-  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/all/course`);
+  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/all/course`, {
+    next: { revalidate: 3600 },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -11,7 +13,9 @@ async function getAllMeals() {
 }
 
 async function getAllDiets() {
-  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/all/diet`);
+  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/all/diet`, {
+    next: { revalidate: 3600 },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

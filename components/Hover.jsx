@@ -28,18 +28,18 @@ function Hover({ recipeData, children }) {
         >
           {children}
         </HoverCardTrigger>
-        <HoverCardContent className="w-80">
-          <div className="flex">
+        <HoverCardContent className="w-64">
+          <div>
             <div>
               <Image
                 className="rounded-lg"
                 src={imgURL}
-                width={100}
+                width={300}
                 height={100}
                 alt={name}
               />
             </div>
-            <div className="ml-2 text-left">
+            <div className="mt-2 text-left">
               <h3 className="text-lg">{name}</h3>
               <div className="text-slate-800 text-base mt-2">
                 <p className="flex items-center">
@@ -61,7 +61,7 @@ function Hover({ recipeData, children }) {
                   <span className="ml-2">{course}</span>
                 </p>
                 <p className="flex my-1">
-                  {diet === "Non Vegeterian" || diet === "Eggetarian" ? (
+                  {diet === "Non Vegetarian" || diet === "Eggetarian" ? (
                     <span className="text-rose-500">
                       <Drumstick size={20} strokeWidth={1.6} />{" "}
                     </span>

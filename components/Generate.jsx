@@ -8,6 +8,7 @@ import ConfettiGenerator from "confetti-js";
 import useSound from "use-sound";
 import { useState } from "react";
 import recipeSet from "@/lib/recipesSet";
+import { useKeyPress } from "./custom-hooks/useKeyPress";
 
 function Generate({ filters }) {
   const [recipe, setRecipe] = useState({});
@@ -17,6 +18,10 @@ function Generate({ filters }) {
     meal: "random",
     diet: "random",
   });
+
+  useKeyPress(() => {
+    handleClick();
+  }, ["Space"]);
 
   // Generating Random number
   const getRandomNumber = (max) => {
@@ -100,25 +105,33 @@ function Generate({ filters }) {
     }, 200);
 
     let name;
+    let data;
+    let dataSize;
     if (filterBy.meal === "random" && filterBy.diet === "random") {
-      const data = await getRecipe();
+      data = await getRecipe();
       setRecipe(data[0]);
       name = data[0]?.name;
     } else {
-      const data = await getFilteredRecipe();
-      const dataSize = data.length;
-      const randomNum = getRandomNumber(dataSize);
-      const recipe = data[randomNum];
-      setRecipe(recipe);
-      name = recipe?.name;
+      data = await getFilteredRecipe();
+      dataSize = data.length;
+      if (dataSize === 0) {
+        name = null;
+      } else {
+        const randomNum = getRandomNumber(dataSize);
+        const recipe = data[randomNum];
+        setRecipe(recipe);
+        name = recipe?.name;
+      }
     }
 
     setTimeout(() => {
       clearInterval(timer);
       setRecipeName(name); // set recipe fetched from supabase
       count = 0;
-      generateConfetti();
-      ConfettiPlay();
+      if (dataSize !== 0) {
+        generateConfetti();
+        ConfettiPlay();
+      }
     }, 2000);
   };
 
@@ -134,6 +147,8 @@ function Generate({ filters }) {
       >
         {recipeName ? (
           <Hover recipeData={recipe}>{recipeName}</Hover>
+        ) : recipeName === null ? (
+          <span>😅Ops! Please change filter </span>
         ) : (
           <span>Generate a random recipe</span>
         )}
