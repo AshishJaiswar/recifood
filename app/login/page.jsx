@@ -13,16 +13,7 @@ export const metadata = {
 export default function AuthenticationPage() {
   return (
     <>
-      <div className="container relative lg:h-[800px] flex flex-col pt-6 md:pt-0 items-end justify-end sm:justify-center sm:items-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <Link
-          href="/examples/authentication"
-          className={cn(
-            buttonVariants({ variant: "secondary" }),
-            "sm:absolute right-4 top-4 md:right-8 md:top-8"
-          )}
-        >
-          Login
-        </Link>
+      <div className="container relative lg:h-[800px] flex flex-col pt-6 md:pt-0 items-end justify-end sm:justify-center sm:items-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0 md:my-8">
         <div className="relative hidden h-full flex-col bg-muted text-white dark:border-r lg:flex">
           <div className="absolute inset-0 bg-zinc-900" />
           <div className="relative z-20 flex items-center text-lg font-medium">
@@ -62,6 +53,13 @@ export default function AuthenticationPage() {
               </p>
             </div>
             <UserAuthForm />
+            <Link
+              href="/login"
+              className="text-center underline underline-offset-4"
+              title="Login"
+            >
+              Already have an account?
+            </Link>
             <p className="px-8 text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{" "}
               <Link

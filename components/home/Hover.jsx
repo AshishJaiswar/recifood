@@ -3,7 +3,15 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { Flame, Clock4, Salad, Drumstick, Utensils, Soup } from "lucide-react";
+import {
+  Flame,
+  Clock4,
+  Drumstick,
+  Utensils,
+  ChefHat,
+  Soup,
+  LeafyGreen,
+} from "lucide-react";
 import Image from "next/image";
 
 function Hover({ recipeData, children }) {
@@ -13,6 +21,7 @@ function Hover({ recipeData, children }) {
     course,
     diet,
     totalCaloriesInCal,
+    servings,
     totalTimeInMins,
     link,
     imgURL,
@@ -50,13 +59,13 @@ function Hover({ recipeData, children }) {
                 </p>
                 <p className="flex my-1">
                   <span>
-                    <Soup size={20} strokeWidth={1.6} />
+                    <ChefHat size={20} strokeWidth={1.6} />
                   </span>
                   <span className="ml-2">{cuisine}</span>
                 </p>
                 <p className="flex my-1">
                   <span>
-                    <Utensils size={20} strokeWidth={1.6} />
+                    <Soup size={20} strokeWidth={1.6} />
                   </span>
                   <span className="ml-2">{course}</span>
                 </p>
@@ -67,7 +76,7 @@ function Hover({ recipeData, children }) {
                     </span>
                   ) : (
                     <span className="text-green-500">
-                      <Salad size={20} strokeWidth={1.6} />{" "}
+                      <LeafyGreen size={20} strokeWidth={1.6} />{" "}
                     </span>
                   )}
                   <span className="ml-2">{diet}</span>
@@ -76,7 +85,13 @@ function Hover({ recipeData, children }) {
                   <span className="text-orange-500">
                     <Flame size={20} strokeWidth={1.6} />
                   </span>
-                  <span className="ml-2">{totalCaloriesInCal} Calories</span>
+                  <span className="ml-2">Calories - {totalCaloriesInCal}</span>
+                </p>
+                <p className="flex my-1 ">
+                  <span>
+                    <Utensils size={20} strokeWidth={1.6} />
+                  </span>
+                  <span className="ml-2">Servings - {servings}</span>
                 </p>
               </div>
             </div>

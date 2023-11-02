@@ -8,7 +8,7 @@ import ConfettiGenerator from "confetti-js";
 import useSound from "use-sound";
 import { useState } from "react";
 import recipeSet from "@/lib/recipesSet";
-import { useKeyPress } from "./custom-hooks/useKeyPress";
+import { useKeyPress } from "../custom-hooks/useKeyPress";
 
 function Generate({ filters }) {
   const [recipe, setRecipe] = useState({});
@@ -61,7 +61,8 @@ function Generate({ filters }) {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      setRecipeName(null);
+      throw new Error("Failed to fetch recipe in generate page");
     }
 
     return res.json();
@@ -93,7 +94,8 @@ function Generate({ filters }) {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      setRecipeName(null);
+      throw new Error("Failed to fetch recipe in generate page with filters");
     }
 
     return res.json();

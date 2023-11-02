@@ -12,7 +12,9 @@ export async function GET(request) {
   if (meal !== null && diet === null) {
     const { data, error } = await supabase
       .from("recipes")
-      .select()
+      .select(
+        "id, name, prepTimeInMins, cookTimeInMins, totalTimeInMins, servings, cuisine, course, diet, totalCaloriesInCal, link, imgURL"
+      )
       .eq("course", meal);
 
     recipes = data;
@@ -20,7 +22,9 @@ export async function GET(request) {
   } else if (meal === null && diet !== null) {
     const { data, error } = await supabase
       .from("recipes")
-      .select()
+      .select(
+        "id, name, prepTimeInMins, cookTimeInMins, totalTimeInMins, servings, cuisine, course, diet, totalCaloriesInCal, link, imgURL"
+      )
       .eq("diet", diet);
 
     recipes = data;
@@ -28,7 +32,9 @@ export async function GET(request) {
   } else if (meal !== null && diet !== null) {
     const { data, error } = await supabase
       .from("recipes")
-      .select()
+      .select(
+        "id, name, prepTimeInMins, cookTimeInMins, totalTimeInMins, servings, cuisine, course, diet, totalCaloriesInCal, link, imgURL"
+      )
       .eq("course", meal)
       .eq("diet", diet);
 
