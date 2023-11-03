@@ -6,7 +6,7 @@ async function getAllMeals() {
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to meals data => getAllMeals");
   }
 
   return res.json();
@@ -18,7 +18,7 @@ async function getAllDiets() {
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to fetch diet data => getAllDiets");
   }
 
   return res.json();

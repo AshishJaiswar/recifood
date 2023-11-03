@@ -61,8 +61,7 @@ function Generate({ filters }) {
     });
 
     if (!res.ok) {
-      setRecipeName(null);
-      throw new Error("Failed to fetch recipe in generate page");
+      throw new Error("Failed to fetch recipe => getRecipe");
     }
 
     return res.json();
@@ -94,8 +93,9 @@ function Generate({ filters }) {
     });
 
     if (!res.ok) {
-      setRecipeName(null);
-      throw new Error("Failed to fetch recipe in generate page with filters");
+      throw new Error(
+        "Failed to fetch recipe in generate page with filters => getFilteredRecipe"
+      );
     }
 
     return res.json();
@@ -128,20 +128,32 @@ function Generate({ filters }) {
     let dataSize;
     if (filterBy.meal === "random" && filterBy.diet === "random") {
       // If filter not selected
-      data = await getRecipe();
-      setRecipe(data[0]);
-      name = data[0]?.name;
+      try {
+        data = await getRecipe();
+        setRecipe(data[0]);
+        name = data[0]?.name;
+      } catch (error) {
+        dataSize = 0; // To prevent calling confetti
+        name = "Ops! something went wrong.";
+        console.log(error);
+      }
     } else {
-      // If filter selected
-      data = await getFilteredRecipe();
-      dataSize = data.length;
-      if (dataSize === 0) {
-        name = null;
-      } else {
-        const randomNum = getRandomNumber(dataSize);
-        const recipe = data[randomNum];
-        setRecipe(recipe);
-        name = recipe?.name;
+      try {
+        // If filter selected
+        data = await getFilteredRecipe();
+        dataSize = data.length;
+        if (dataSize === 0) {
+          name = null;
+        } else {
+          const randomNum = getRandomNumber(dataSize);
+          const recipe = data[randomNum];
+          setRecipe(recipe);
+          name = recipe?.name;
+        }
+      } catch (error) {
+        dataSize = 0;
+        name = "Ops! something went wrong.";
+        console.log(error);
       }
     }
 
@@ -151,8 +163,12 @@ function Generate({ filters }) {
       count = 0;
       if (dataSize !== 0) {
         // If returned data is empty [] then don't execute confetti
-        generateConfetti();
-        ConfettiPlay();
+        try {
+          generateConfetti();
+          ConfettiPlay();
+        } catch (err) {
+          console.log("Error in confetti generation/play", err);
+        }
       }
     }, 2000);
   };

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { useRef, useState } from "react";
 
-function TimeInput({ filterHeading, filterLabel, unit }) {
+function TimeInput({ filterHeading, filterLabel, unit, max }) {
   const [time, setTime] = useState(0);
   const ref = useRef(null);
 
@@ -18,7 +18,7 @@ function TimeInput({ filterHeading, filterLabel, unit }) {
       </p>
       <Slider
         defaultValue={[0]}
-        max={900}
+        max={max}
         ref={ref}
         onValueChange={() =>
           setTime(ref.current.lastChild.children[0].ariaValueNow)

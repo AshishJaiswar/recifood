@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
@@ -16,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
+import FilterAction from "./FilterAction";
 
 const FormSchema = z.object({
   items: z.array(z.string()).refine((value) => value.some((item) => item), {
@@ -66,7 +66,6 @@ export function CheckboxGroup({ title, items }) {
                       >
                         <FormControl>
                           <Checkbox
-                            checked={field.value?.includes(item.id)}
                             onCheckedChange={(checked) => {
                               return checked
                                 ? field.onChange([...field.value, item.id])
@@ -90,14 +89,7 @@ export function CheckboxGroup({ title, items }) {
             </FormItem>
           )}
         />
-        <div className="flex justify-between">
-          <Button variant="outline" className="px-6">
-            Clear
-          </Button>
-          <Button type="submit" className="px-6">
-            Apply
-          </Button>
-        </div>
+        <FilterAction />
       </form>
     </Form>
   );

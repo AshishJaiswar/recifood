@@ -41,7 +41,11 @@ export async function GET(request) {
     recipes = data;
     errorMsg = error;
   }
-  if (errorMsg) console.log(errorMsg);
+  if (errorMsg)
+    console.log(
+      "Failed to fetch filtered random recipe => API [/random/filterby?queryParams]",
+      errorMsg
+    );
 
   return NextResponse.json(recipes);
 }

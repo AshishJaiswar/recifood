@@ -1,10 +1,10 @@
-import Filters from "@/components/filtergroup/Filters";
+import Filters from "./filtergroup/Filters";
 import RecipeGrid from "./RecipeGrid";
 
-function RecipeCards() {
+function RecipeCards({ filters }) {
   return (
     <div>
-      <Filters />
+      <Filters filters={filters} />
       <div>
         <h3 className="text-lg font-medium my-4 sm:text-2xl">Recipes</h3>
         <p>

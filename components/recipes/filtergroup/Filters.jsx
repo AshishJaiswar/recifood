@@ -9,58 +9,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { CheckboxGroup } from "./CheckboxGroup";
 import TimeInput from "./TimeInput";
+import { Input } from "@/components/ui/input";
+import FilterAction from "./FilterAction";
 
-function Filters() {
-  const cuisines = [
-    {
-      id: "indian",
-      label: "Indian",
-    },
-    {
-      id: "european",
-      label: "European",
-    },
-    {
-      id: "rajasthani",
-      label: "Rajasthani",
-    },
-    {
-      id: "jharkhand",
-      label: "Jharkhand",
-    },
-    {
-      id: "lucknowi",
-      label: "Lucknowi",
-    },
-  ];
-  const meals = [
-    {
-      id: "snacks",
-      label: "Snacks",
-    },
-    {
-      id: "lunch",
-      label: "Lunch",
-    },
-    {
-      id: "dinner",
-      label: "dinner",
-    },
-  ];
-  const diets = [
-    {
-      id: "veg",
-      label: "Vegetarian",
-    },
-    {
-      id: "non-veg",
-      label: "Non Vegetarian",
-    },
-    {
-      id: "high-protein",
-      label: "Hign Protein",
-    },
-  ];
+function Filters({ filters }) {
   return (
     <div className="my-2 md:my-6">
       <h3 className="flex items-center text-lg font-medium my-1 text-slate-800">
@@ -80,7 +32,7 @@ function Filters() {
               </span>
             </PopoverTrigger>
             <PopoverContent className="w-56 max-h-96 overflow-y-auto">
-              <CheckboxGroup title="Select Cuisines" items={cuisines} />
+              <CheckboxGroup title="Select Cuisines" items={filters.cuisines} />
             </PopoverContent>
           </Popover>
           <Popover>
@@ -95,7 +47,7 @@ function Filters() {
               </span>
             </PopoverTrigger>
             <PopoverContent className="w-56 max-h-96 overflow-y-auto">
-              <CheckboxGroup title="Select Meal" items={meals} />
+              <CheckboxGroup title="Select Meal" items={filters.meals} />
             </PopoverContent>
           </Popover>
           <Popover>
@@ -110,13 +62,13 @@ function Filters() {
               </span>
             </PopoverTrigger>
             <PopoverContent className="w-56 max-h-96 overflow-y-auto">
-              <CheckboxGroup title="Select Diet Type" items={diets} />
+              <CheckboxGroup title="Select Diet Type" items={filters.diets} />
             </PopoverContent>
           </Popover>
           <Popover>
             <PopoverTrigger className="mt-2 mb-4">
               <span className="border p-2 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in mt-2 mr-2">
-                Prep Time
+                Total Time
                 <ChevronDown
                   size={20}
                   strokeWidth={1.6}
@@ -127,27 +79,9 @@ function Filters() {
             <PopoverContent className="w-64 max-h-96 overflow-y-auto">
               <TimeInput
                 filterHeading="Choose Time Duration"
-                filterLabel="Prep time"
-                unit="min"
-              />
-            </PopoverContent>
-          </Popover>
-          <Popover>
-            <PopoverTrigger className="mt-2 mb-4">
-              <span className="border p-2 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in mt-2 mr-2">
-                Cooking Time
-                <ChevronDown
-                  size={20}
-                  strokeWidth={1.6}
-                  className="inline-block ml-px"
-                />
-              </span>
-            </PopoverTrigger>
-            <PopoverContent className="w-64 max-h-96 overflow-y-auto">
-              <TimeInput
-                filterHeading="Choose Time Duration"
-                filterLabel="Cooking time"
-                unit="min"
+                filterLabel="Time"
+                unit="mins"
+                max={filters.maxTime}
               />
             </PopoverContent>
           </Popover>
@@ -163,16 +97,36 @@ function Filters() {
               </span>
             </PopoverTrigger>
             <PopoverContent className="w-64 max-h-96 overflow-y-auto">
-              <TimeInput
-                filterHeading="Total Servings"
-                filterLabel="Servings upto"
-                unit=""
+              <Input
+                className="mb-6"
+                type="number"
+                placeholder="Enter serving size"
               />
+              <FilterAction />
+            </PopoverContent>
+          </Popover>
+          <Popover>
+            <PopoverTrigger className="mt-2 mb-4">
+              <span className="border p-2 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in mt-2 mr-2">
+                Calories
+                <ChevronDown
+                  size={20}
+                  strokeWidth={1.6}
+                  className="inline-block ml-px"
+                />
+              </span>
+            </PopoverTrigger>
+            <PopoverContent className="w-64 max-h-96 overflow-y-auto">
+              <Input
+                className="mb-6"
+                type="number"
+                placeholder="Enter calories"
+              />
+              <FilterAction />
             </PopoverContent>
           </Popover>
         </div>
-        <div className="mb-2">
-          {/* This button will be displayed if user selected any filter */}
+        <div>
           <Button
             type="reset"
             variant="secondary"

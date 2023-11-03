@@ -19,29 +19,37 @@ function RecipeGrid() {
     const res = await fetch(url);
 
     if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      throw new Error("Failed to fetch data => getRecipes");
     }
 
     return res.json();
   }
 
   const getRecipeData = async () => {
-    const data = await getRecipes();
-    setRecipes(data);
-    const newStart = range.end + 1;
-    const newEnd = range.end + 12;
-    setRange({ start: newStart, end: newEnd });
+    try {
+      const data = await getRecipes();
+      setRecipes(data);
+      const newStart = range.end + 1;
+      const newEnd = range.end + 12;
+      setRange({ start: newStart, end: newEnd });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getMoreRecipeData = async () => {
-    const data = await getRecipes();
-    setRecipes((prevItems) => [...prevItems, ...data]);
+    try {
+      const data = await getRecipes();
+      setRecipes((prevItems) => [...prevItems, ...data]);
 
-    data.length > 0 ? setHasMore(true) : setHasMore(false);
+      data.length > 0 ? setHasMore(true) : setHasMore(false);
 
-    const newStart = range.end + 1;
-    const newEnd = range.end + 12;
-    setRange({ start: newStart, end: newEnd });
+      const newStart = range.end + 1;
+      const newEnd = range.end + 12;
+      setRange({ start: newStart, end: newEnd });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -51,7 +59,7 @@ function RecipeGrid() {
   return (
     <InfiniteScroll
       className="grid min-h-[800px] md:min-h-[1200px] gap-8 my-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-      dataLength={recipes.length} //This is important field to render the next data
+      dataLength={recipes?.length} //This is important field to render the next data
       next={getMoreRecipeData}
       hasMore={hasMore}
       loader={
@@ -76,17 +84,18 @@ function RecipeGrid() {
         </p>
       }
     >
-      {recipes.map((recipe) => (
-        <RecipeCard
-          key={recipe.id}
-          recipe={recipe}
-          isNonVeg={[
-            "Non Vegetarian",
-            "High Protein Non Vegetarian",
-            "Eggetarian",
-          ].includes(recipe.diet)}
-        />
-      ))}
+      {recipes &&
+        recipes.map((recipe) => (
+          <RecipeCard
+            key={recipe.id}
+            recipe={recipe}
+            isNonVeg={[
+              "Non Vegetarian",
+              "High Protein Non Vegetarian",
+              "Eggetarian",
+            ].includes(recipe.diet)}
+          />
+        ))}
     </InfiniteScroll>
   );
 }
