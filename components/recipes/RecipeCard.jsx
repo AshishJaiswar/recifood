@@ -23,7 +23,7 @@ function RecipeCard({
   return (
     <>
       <div>
-        <Link href={link}>
+        <Link href={link} target="_blank">
           <div className="relative">
             <Card>
               <CardContent className="p-0 h-64">
@@ -33,6 +33,7 @@ function RecipeCard({
                   fill={true}
                   alt={name}
                   loading="lazy"
+                  quality={10}
                 />
               </CardContent>
             </Card>
@@ -53,6 +54,7 @@ function RecipeCard({
         <h4 className="text-base sm:text-lg font-medium mt-2">
           <Link
             href={link}
+            target="_blank"
             className="hover:underline underline-offset-4 decoration-2 decoration-violet-600"
           >
             {name}

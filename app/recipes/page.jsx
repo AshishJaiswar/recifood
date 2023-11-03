@@ -1,9 +1,9 @@
-import RecipeGrid from "@/components/RecipeGrid";
+import Recipecards from "@/components/recipes/RecipeCards";
 
 function Recipes() {
   return (
     <>
-      <RecipeGrid />
+      <Recipecards />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import RecipeCard from "@/components/RecipeCard";
+import RecipeCard from "@/components/recipes/RecipeCard";
 
 function SearchResult() {
   return (
