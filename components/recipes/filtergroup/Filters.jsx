@@ -12,7 +12,17 @@ import TimeInput from "./TimeInput";
 import { Input } from "@/components/ui/input";
 import FilterAction from "./FilterAction";
 
-function Filters({ filters }) {
+function Filters({ filters, handleFilterApply }) {
+  const onFilterApply = (data, by) => {
+    const filterLabels = filters[by]
+      .filter((item) => {
+        return data.includes(item.id);
+      })
+      .map((item) => item.label);
+
+    handleFilterApply({ [by]: filterLabels });
+  };
+
   return (
     <div className="my-2 md:my-6">
       <h3 className="flex items-center text-lg font-medium my-1 text-slate-800">
@@ -31,8 +41,14 @@ function Filters({ filters }) {
                 />
               </span>
             </PopoverTrigger>
-            <PopoverContent className="w-56 max-h-96 overflow-y-auto">
-              <CheckboxGroup title="Select Cuisines" items={filters.cuisines} />
+            <PopoverContent className="w-60 max-h-96 overflow-y-auto">
+              <CheckboxGroup
+                title="Select Cuisines"
+                items={filters.cuisines}
+                handleFilterChange={(data) => {
+                  onFilterApply(data, "cuisines");
+                }}
+              />
             </PopoverContent>
           </Popover>
           <Popover>
@@ -46,8 +62,14 @@ function Filters({ filters }) {
                 />
               </span>
             </PopoverTrigger>
-            <PopoverContent className="w-56 max-h-96 overflow-y-auto">
-              <CheckboxGroup title="Select Meal" items={filters.meals} />
+            <PopoverContent className="w-60 max-h-96 overflow-y-auto">
+              <CheckboxGroup
+                title="Select Meal"
+                items={filters.meals}
+                handleFilterChange={(data) => {
+                  onFilterApply(data, "meals");
+                }}
+              />
             </PopoverContent>
           </Popover>
           <Popover>
@@ -61,8 +83,14 @@ function Filters({ filters }) {
                 />
               </span>
             </PopoverTrigger>
-            <PopoverContent className="w-56 max-h-96 overflow-y-auto">
-              <CheckboxGroup title="Select Diet Type" items={filters.diets} />
+            <PopoverContent className="w-60 max-h-96 overflow-y-auto">
+              <CheckboxGroup
+                title="Select Diet Type"
+                items={filters.diets}
+                handleFilterChange={(data) => {
+                  onFilterApply(data, "diets");
+                }}
+              />
             </PopoverContent>
           </Popover>
           <Popover>

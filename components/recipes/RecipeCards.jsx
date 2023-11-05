@@ -1,10 +1,8 @@
-import Filters from "./filtergroup/Filters";
 import RecipeGrid from "./RecipeGrid";
 
 function RecipeCards({ filters }) {
   return (
     <div>
-      <Filters filters={filters} />
       <div>
         <h3 className="text-lg font-medium my-4 sm:text-2xl">Recipes</h3>
         <p>
@@ -12,7 +10,7 @@ function RecipeCards({ filters }) {
           culinary masterpiece
         </p>
       </div>
-      <RecipeGrid />
+      <RecipeGrid filters={filters} />
     </div>
   );
 }

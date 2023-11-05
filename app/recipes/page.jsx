@@ -34,8 +34,8 @@ async function getAllDiets() {
 
   return res.json();
 }
-async function getAllTime() {
-  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/all/totaltime`, {
+async function getMaxTime() {
+  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/all/maxtime`, {
     next: { revalidate: 3600 },
   });
 
@@ -46,27 +46,23 @@ async function getAllTime() {
   return res.json();
 }
 
+const transfromData = (data) => {
+  return data.map((obj) => {
+    const key = Object.keys(obj);
+    const item = obj[key[0]];
+    return { id: item.toLowerCase().replace(" ", "_"), label: item };
+  });
+};
+
 async function Recipes() {
   let meals = await getAllMeals();
   let cuisines = await getAllCuisines();
   let diets = await getAllDiets();
-  let times = await getAllTime();
-
-  meals = meals.map(({ course }) => {
-    return { id: course.toLowerCase().replace(" ", "_"), label: course };
-  });
-  cuisines = cuisines.map(({ cuisine }) => {
-    return { id: cuisine.toLowerCase().replace(" ", "_"), label: cuisine };
-  });
-  diets = diets.map(({ diet }) => {
-    return { id: diet.toLowerCase().replace(" ", "_"), label: diet };
-  });
-
-  times = times.map(({ totalTimeInMins }) => {
-    return totalTimeInMins;
-  });
-
-  const maxTime = Math.max(...times);
+  let maxTime = await getMaxTime();
+  meals = transfromData(meals);
+  cuisines = transfromData(cuisines);
+  diets = transfromData(diets);
+  maxTime = maxTime[0].max;
 
   const filters = { meals, cuisines, diets, maxTime };
   return (

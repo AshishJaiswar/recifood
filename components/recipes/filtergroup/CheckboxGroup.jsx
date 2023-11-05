@@ -23,23 +23,19 @@ const FormSchema = z.object({
   }),
 });
 
-export function CheckboxGroup({ title, items }) {
+export function CheckboxGroup({ title, items, handleFilterChange }) {
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      items: ["indian"],
+      items: [],
     },
   });
 
   function onSubmit(data) {
     toast({
       title: "Filter Applied",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
     });
+    handleFilterChange(data.items);
   }
 
   return (
@@ -66,6 +62,7 @@ export function CheckboxGroup({ title, items }) {
                       >
                         <FormControl>
                           <Checkbox
+                            checked={field.value?.includes(item.id)}
                             onCheckedChange={(checked) => {
                               return checked
                                 ? field.onChange([...field.value, item.id])
