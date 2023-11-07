@@ -23,11 +23,17 @@ const FormSchema = z.object({
   }),
 });
 
-export function CheckboxGroup({ title, items, handleFilterChange }) {
+export function CheckboxGroup({
+  title,
+  items,
+  defaultItems,
+  handleFilterChange,
+  clearFilter,
+}) {
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      items: [],
+      items: defaultItems.map((item) => item.id),
     },
   });
 
@@ -86,7 +92,7 @@ export function CheckboxGroup({ title, items, handleFilterChange }) {
             </FormItem>
           )}
         />
-        <FilterAction />
+        <FilterAction clearFilter={clearFilter} />
       </form>
     </Form>
   );

@@ -5,19 +5,25 @@ import { useEffect, useState } from "react";
 import RecipeCardSkeleton from "../skeleton/RecipeCardSkeleton";
 import Filters from "./filtergroup/Filters";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { XCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "../ui/badge";
 
 function RecipeGrid({ filters }) {
   const [recipes, setRecipes] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [isFiltered, setFiltered] = useState(false);
-  const [items, setItems] = useState({}); // FilterItems data
+  const [checkedItems, setCheckedItems] = useState({
+    course: [],
+    cuisine: [],
+    diet: [],
+  }); // FilterItems data
   const [range, setRange] = useState({
     start: 1,
     end: 12,
   });
 
-  async function fetchRecipes() {
-    const { start, end } = range;
+  async function fetchRecipes(start = 1, end = 12) {
     let url = `/api/recipe?start=${start}&end=${end}`;
     const res = await fetch(url);
 
@@ -28,28 +34,16 @@ function RecipeGrid({ filters }) {
     return res.json();
   }
 
-  async function fetchFilteredRecipes(filterItems, start, end) {
-    let key = Object.keys(filterItems)[0];
-
-    if (key === "meals") {
-      key = "course";
-    } else if (key === "cuisines") {
-      key = "cuisine";
-    } else if (key === "diets") {
-      key = "diet";
-    } else {
-      throw new Error("Invalid key");
-    }
-
+  async function fetchFilteredRecipes(checkedItems, start = 0, end = 11) {
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(filterItems),
+      body: JSON.stringify(checkedItems),
     };
 
-    let url = `/api/recipe/filterby/${key}?start=${start}&end=${end}`;
+    let url = `/api/recipe/filterby?start=${start}&end=${end}`;
     const res = await fetch(url, options);
 
     if (!res.ok) {
@@ -63,7 +57,6 @@ function RecipeGrid({ filters }) {
     try {
       const data = await fetchRecipes();
       setRecipes(data);
-      updateRange();
     } catch (error) {
       console.log(error);
     }
@@ -75,13 +68,10 @@ function RecipeGrid({ filters }) {
     setRange({ start: newStart, end: newEnd });
   };
 
-  const getFilteredRecipes = async (filterItems) => {
+  const getFilteredRecipes = async (checkedItems) => {
     try {
-      let start = 0;
-      let end = 11;
-      const data = await fetchFilteredRecipes(filterItems, start, end);
+      const data = await fetchFilteredRecipes(checkedItems);
       setRecipes(data);
-      setRange({ start: end + 1, end: end + 12 });
     } catch (error) {
       console.log(error);
     }
@@ -92,12 +82,12 @@ function RecipeGrid({ filters }) {
       let data;
       if (isFiltered) {
         const { start, end } = range;
-        data = await fetchFilteredRecipes(items, start, end);
-        updateRange();
+        data = await fetchFilteredRecipes(checkedItems, start, end);
       } else {
-        data = await fetchRecipes();
-        updateRange();
+        const { start, end } = range;
+        data = await fetchRecipes(start, end);
       }
+      updateRange();
       setRecipes((prevItems) => [...prevItems, ...data]);
 
       data.length > 0 ? setHasMore(true) : setHasMore(false);
@@ -106,20 +96,78 @@ function RecipeGrid({ filters }) {
     }
   };
 
+  const handleClick = () => {
+    getRecipeData();
+    setRange({ start: 13, end: 24 });
+    setFiltered(false);
+    setCheckedItems({
+      course: [],
+      cuisine: [],
+      diet: [],
+    });
+  };
+
   useEffect(() => {
     getRecipeData();
+    updateRange();
   }, []);
+  useEffect(() => {
+    if (isFiltered) {
+      getFilteredRecipes(checkedItems);
+      setRange({ start: 12, end: 23 });
+    }
+  }, [checkedItems]);
 
   return (
     <>
       <Filters
         filters={filters}
         handleFilterApply={(filterItems) => {
-          getFilteredRecipes(filterItems);
-          setItems(filterItems);
+          setCheckedItems({ ...checkedItems, ...filterItems });
           setFiltered(true);
         }}
+        checkedItems={checkedItems}
+        clearFilter={(item) => {
+          setFiltered(false);
+          setCheckedItems({ ...checkedItems, [item]: [] });
+        }}
       />
+      <div className="sm:flex sm:items-center">
+        <Button
+          type="reset"
+          variant="secondary"
+          className="rounded-xl hover:bg-slate-300"
+          size="sm"
+          disabled={!isFiltered}
+          onClick={handleClick}
+        >
+          <XCircle size={20} strokeWidth={1.6} className="mr-1" />
+          Clear All
+        </Button>
+        <div className="mt-2 sm:ml-2 sm:mt-0">
+          {checkedItems.course.length >= 1 ? (
+            <Badge variant="secondary" className="mx-1 sm:mx-2">
+              meal
+            </Badge>
+          ) : (
+            ""
+          )}
+          {checkedItems.cuisine.length >= 1 ? (
+            <Badge variant="secondary" className="mx-1 sm:mx-2">
+              cuisines
+            </Badge>
+          ) : (
+            ""
+          )}
+          {checkedItems.diet.length >= 1 ? (
+            <Badge variant="secondary" className="mx-1 sm:mx-2">
+              diets
+            </Badge>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
       <InfiniteScroll
         className="grid gap-8 my-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
         dataLength={recipes?.length} //This is important field to render the next data

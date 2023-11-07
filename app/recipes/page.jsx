@@ -55,16 +55,17 @@ const transfromData = (data) => {
 };
 
 async function Recipes() {
-  let meals = await getAllMeals();
-  let cuisines = await getAllCuisines();
-  let diets = await getAllDiets();
+  let course = await getAllMeals();
+  let cuisine = await getAllCuisines();
+  let diet = await getAllDiets();
   let maxTime = await getMaxTime();
-  meals = transfromData(meals);
-  cuisines = transfromData(cuisines);
-  diets = transfromData(diets);
+  course = transfromData(course);
+  cuisine = transfromData(cuisine);
+  diet = transfromData(diet);
   maxTime = maxTime[0].max;
 
-  const filters = { meals, cuisines, diets, maxTime };
+  const filters = { course, cuisine, diet, maxTime };
+
   return (
     <>
       <Recipecards filters={filters} />

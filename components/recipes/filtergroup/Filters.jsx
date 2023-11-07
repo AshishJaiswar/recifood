@@ -1,30 +1,27 @@
 "use client";
 
-import { ListFilter, ChevronDown, XCircle } from "lucide-react";
+import { ListFilter, ChevronDown } from "lucide-react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
 import { CheckboxGroup } from "./CheckboxGroup";
 import TimeInput from "./TimeInput";
 import { Input } from "@/components/ui/input";
 import FilterAction from "./FilterAction";
 
-function Filters({ filters, handleFilterApply }) {
+function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
   const onFilterApply = (data, by) => {
-    const filterLabels = filters[by]
-      .filter((item) => {
-        return data.includes(item.id);
-      })
-      .map((item) => item.label);
+    const filterItems = filters[by].filter((item) => {
+      return data.includes(item.id);
+    });
 
-    handleFilterApply({ [by]: filterLabels });
+    handleFilterApply({ [by]: filterItems });
   };
 
   return (
-    <div className="my-2 md:my-6">
+    <div className="my-2 md:mt-4 md:mb-1">
       <h3 className="flex items-center text-lg font-medium my-1 text-slate-800">
         <ListFilter size={18} strokeWidth={2} /> <span>Filters</span>
       </h3>
@@ -33,7 +30,7 @@ function Filters({ filters, handleFilterApply }) {
           <Popover>
             <PopoverTrigger className="mt-2 mb-4">
               <span className="border p-2 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in mr-2">
-                Cuisines
+                Cuisine
                 <ChevronDown
                   size={20}
                   strokeWidth={1.6}
@@ -43,11 +40,13 @@ function Filters({ filters, handleFilterApply }) {
             </PopoverTrigger>
             <PopoverContent className="w-60 max-h-96 overflow-y-auto">
               <CheckboxGroup
-                title="Select Cuisines"
-                items={filters.cuisines}
+                title="Select cuisine"
+                items={filters.cuisine}
                 handleFilterChange={(data) => {
-                  onFilterApply(data, "cuisines");
+                  onFilterApply(data, "cuisine");
                 }}
+                defaultItems={checkedItems.cuisine}
+                clearFilter={() => clearFilter("cuisine")}
               />
             </PopoverContent>
           </Popover>
@@ -65,10 +64,12 @@ function Filters({ filters, handleFilterApply }) {
             <PopoverContent className="w-60 max-h-96 overflow-y-auto">
               <CheckboxGroup
                 title="Select Meal"
-                items={filters.meals}
+                items={filters.course}
                 handleFilterChange={(data) => {
-                  onFilterApply(data, "meals");
+                  onFilterApply(data, "course");
                 }}
+                defaultItems={checkedItems.course}
+                clearFilter={() => clearFilter("course")}
               />
             </PopoverContent>
           </Popover>
@@ -86,10 +87,12 @@ function Filters({ filters, handleFilterApply }) {
             <PopoverContent className="w-60 max-h-96 overflow-y-auto">
               <CheckboxGroup
                 title="Select Diet Type"
-                items={filters.diets}
+                items={filters.diet}
                 handleFilterChange={(data) => {
-                  onFilterApply(data, "diets");
+                  onFilterApply(data, "diet");
                 }}
+                defaultItems={checkedItems.diet}
+                clearFilter={() => clearFilter("diet")}
               />
             </PopoverContent>
           </Popover>
@@ -153,17 +156,6 @@ function Filters({ filters, handleFilterApply }) {
               <FilterAction />
             </PopoverContent>
           </Popover>
-        </div>
-        <div>
-          <Button
-            type="reset"
-            variant="secondary"
-            className="rounded-xl"
-            size="sm"
-          >
-            <XCircle size={20} strokeWidth={1.6} className="mr-1" />
-            Clear All
-          </Button>
         </div>
       </section>
     </div>
