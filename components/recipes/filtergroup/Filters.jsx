@@ -8,11 +8,10 @@ import {
 } from "@/components/ui/popover";
 import { CheckboxGroup } from "./CheckboxGroup";
 import TimeInput from "./TimeInput";
-import { Input } from "@/components/ui/input";
-import FilterAction from "./FilterAction";
+import InputGroup from "./InputGroup";
 
 function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
-  const onFilterApply = (data, by) => {
+  const onFilterApply = (by, data) => {
     const filterItems = filters[by].filter((item) => {
       return data.includes(item.id);
     });
@@ -22,14 +21,14 @@ function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
 
   return (
     <div className="my-2 md:mt-4 md:mb-1">
-      <h3 className="flex items-center text-lg font-medium my-1 text-slate-800">
+      <h3 className="flex items-center text-lg font-medium my-4 text-slate-800">
         <ListFilter size={18} strokeWidth={2} /> <span>Filters</span>
       </h3>
       <section>
-        <div className="my-2">
+        <div className="my-2 flex flex-wrap items-center">
           <Popover>
-            <PopoverTrigger className="mt-2 mb-4">
-              <span className="border p-2 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in mr-2">
+            <PopoverTrigger className="mb-5 mr-2">
+              <span className="text-sm border p-[9px] rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in">
                 Cuisine
                 <ChevronDown
                   size={20}
@@ -43,17 +42,17 @@ function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
                 title="Select cuisine"
                 items={filters.cuisine}
                 handleFilterChange={(data) => {
-                  onFilterApply(data, "cuisine");
+                  onFilterApply("cuisine", data);
                 }}
                 defaultItems={checkedItems.cuisine}
-                clearFilter={() => clearFilter("cuisine")}
+                clearFilter={() => clearFilter({ cuisine: [] })}
               />
             </PopoverContent>
           </Popover>
           <Popover>
-            <PopoverTrigger className="mt-2 mb-4">
-              <span className="border p-2 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in mt-2 mr-2">
-                Meal
+            <PopoverTrigger className="mb-5 mr-2">
+              <span className="text-sm border p-[9px] rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in">
+                Course
                 <ChevronDown
                   size={20}
                   strokeWidth={1.6}
@@ -63,19 +62,19 @@ function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
             </PopoverTrigger>
             <PopoverContent className="w-60 max-h-96 overflow-y-auto">
               <CheckboxGroup
-                title="Select Meal"
+                title="Select course"
                 items={filters.course}
                 handleFilterChange={(data) => {
-                  onFilterApply(data, "course");
+                  onFilterApply("course", data);
                 }}
                 defaultItems={checkedItems.course}
-                clearFilter={() => clearFilter("course")}
+                clearFilter={() => clearFilter({ course: [] })}
               />
             </PopoverContent>
           </Popover>
           <Popover>
-            <PopoverTrigger className="mt-2 mb-4">
-              <span className="border p-2 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in mt-2 mr-2">
+            <PopoverTrigger className="mb-5 mr-2">
+              <span className="text-sm border p-[9px] rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in">
                 Diet
                 <ChevronDown
                   size={20}
@@ -86,19 +85,19 @@ function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
             </PopoverTrigger>
             <PopoverContent className="w-60 max-h-96 overflow-y-auto">
               <CheckboxGroup
-                title="Select Diet Type"
+                title="Select diet"
                 items={filters.diet}
                 handleFilterChange={(data) => {
-                  onFilterApply(data, "diet");
+                  onFilterApply("diet", data);
                 }}
                 defaultItems={checkedItems.diet}
-                clearFilter={() => clearFilter("diet")}
+                clearFilter={() => clearFilter({ diet: [] })}
               />
             </PopoverContent>
           </Popover>
           <Popover>
-            <PopoverTrigger className="mt-2 mb-4">
-              <span className="border p-2 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in mt-2 mr-2">
+            <PopoverTrigger className="mb-5 mr-2">
+              <span className="text-sm border p-[9px] rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in">
                 Total Time
                 <ChevronDown
                   size={20}
@@ -107,18 +106,23 @@ function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
                 />
               </span>
             </PopoverTrigger>
-            <PopoverContent className="w-64 max-h-96 overflow-y-auto">
+            <PopoverContent className="w-72 max-h-96 overflow-y-auto">
               <TimeInput
                 filterHeading="Choose Time Duration"
-                filterLabel="Time"
+                filterLabel="Time under"
                 unit="mins"
                 max={filters.maxTime}
+                handleFilterChange={(value) =>
+                  handleFilterApply({ totalTimeInMins: value })
+                }
+                clearFilter={() => clearFilter({ totalTimeInMins: 0 })}
+                value={checkedItems.totalTimeInMins}
               />
             </PopoverContent>
           </Popover>
           <Popover>
-            <PopoverTrigger className="mt-2 mb-4">
-              <span className="border p-2 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in mt-2 mr-2">
+            <PopoverTrigger className="mb-5 mr-2">
+              <span className="text-sm border p-[9px] rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in">
                 Servings
                 <ChevronDown
                   size={20}
@@ -128,17 +132,18 @@ function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
               </span>
             </PopoverTrigger>
             <PopoverContent className="w-64 max-h-96 overflow-y-auto">
-              <Input
-                className="mb-6"
-                type="number"
-                placeholder="Enter serving size"
+              <InputGroup
+                placeholder="Enter servings size"
+                handleFilterChange={(value) =>
+                  handleFilterApply({ servings: value })
+                }
+                clearFilter={() => clearFilter({ servings: 0 })}
               />
-              <FilterAction />
             </PopoverContent>
           </Popover>
           <Popover>
-            <PopoverTrigger className="mt-2 mb-4">
-              <span className="border p-2 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in mt-2 mr-2">
+            <PopoverTrigger className="mb-5 mr-2">
+              <span className="text-sm border p-[9px] rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in">
                 Calories
                 <ChevronDown
                   size={20}
@@ -148,12 +153,13 @@ function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
               </span>
             </PopoverTrigger>
             <PopoverContent className="w-64 max-h-96 overflow-y-auto">
-              <Input
-                className="mb-6"
-                type="number"
-                placeholder="Enter calories"
+              <InputGroup
+                placeholder="Enter calorie count"
+                handleFilterChange={(value) =>
+                  handleFilterApply({ totalCaloriesInCal: value })
+                }
+                clearFilter={() => clearFilter({ totalCaloriesInCal: 0 })}
               />
-              <FilterAction />
             </PopoverContent>
           </Popover>
         </div>

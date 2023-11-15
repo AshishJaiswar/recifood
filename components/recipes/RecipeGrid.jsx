@@ -5,18 +5,22 @@ import { useEffect, useState } from "react";
 import RecipeCardSkeleton from "../skeleton/RecipeCardSkeleton";
 import Filters from "./filtergroup/Filters";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { XCircle } from "lucide-react";
+import { XCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "../ui/badge";
 
 function RecipeGrid({ filters }) {
   const [recipes, setRecipes] = useState([]);
   const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [isFiltered, setFiltered] = useState(false);
   const [checkedItems, setCheckedItems] = useState({
-    course: [],
     cuisine: [],
+    course: [],
     diet: [],
+    totalTimeInMins: 0,
+    servings: 0,
+    totalCaloriesInCal: 0,
   }); // FilterItems data
   const [range, setRange] = useState({
     start: 1,
@@ -97,13 +101,16 @@ function RecipeGrid({ filters }) {
   };
 
   const handleClick = () => {
+    setFiltered(false);
     getRecipeData();
     setRange({ start: 13, end: 24 });
-    setFiltered(false);
     setCheckedItems({
-      course: [],
       cuisine: [],
+      course: [],
       diet: [],
+      totalTimeInMins: 0,
+      servings: 0,
+      totalCaloriesInCal: 0,
     });
   };
 
@@ -111,11 +118,26 @@ function RecipeGrid({ filters }) {
     getRecipeData();
     updateRange();
   }, []);
+
   useEffect(() => {
+    let filterItems = [];
+    for (let key in checkedItems) {
+      if (checkedItems[key].length || checkedItems[key] >= 1) {
+        filterItems.push(key);
+      }
+    }
+
+    const count = filterItems.length;
+    if (count === 0) {
+      setFiltered(false);
+      getRecipeData();
+      updateRange();
+    }
     if (isFiltered) {
       getFilteredRecipes(checkedItems);
       setRange({ start: 12, end: 23 });
     }
+    setLoading(false);
   }, [checkedItems]);
 
   return (
@@ -123,51 +145,45 @@ function RecipeGrid({ filters }) {
       <Filters
         filters={filters}
         handleFilterApply={(filterItems) => {
+          setLoading(true);
           setCheckedItems({ ...checkedItems, ...filterItems });
           setFiltered(true);
         }}
         checkedItems={checkedItems}
-        clearFilter={(item) => {
-          setFiltered(false);
-          setCheckedItems({ ...checkedItems, [item]: [] });
+        clearFilter={(clearItem) => {
+          setLoading(true);
+          setCheckedItems({ ...checkedItems, ...clearItem });
         }}
       />
       <div className="sm:flex sm:items-center">
         <Button
           type="reset"
-          variant="secondary"
-          className="rounded-xl hover:bg-slate-300"
+          variant="link"
+          className="text-sm font-normal rounded-xl "
           size="sm"
           disabled={!isFiltered}
           onClick={handleClick}
         >
-          <XCircle size={20} strokeWidth={1.6} className="mr-1" />
+          <XCircle size={16} strokeWidth={1.5} className="mr-1" />
           Clear All
         </Button>
         <div className="mt-2 sm:ml-2 sm:mt-0">
-          {checkedItems.course.length >= 1 ? (
-            <Badge variant="secondary" className="mx-1 sm:mx-2">
-              meal
-            </Badge>
-          ) : (
-            ""
-          )}
-          {checkedItems.cuisine.length >= 1 ? (
-            <Badge variant="secondary" className="mx-1 sm:mx-2">
-              cuisines
-            </Badge>
-          ) : (
-            ""
-          )}
-          {checkedItems.diet.length >= 1 ? (
-            <Badge variant="secondary" className="mx-1 sm:mx-2">
-              diets
-            </Badge>
-          ) : (
-            ""
+          {Object.keys(checkedItems).map((item) =>
+            checkedItems[item].length >= 1 || checkedItems[item] > 0 ? (
+              <Badge variant="secondary" className="mx-1 sm:mx-2">
+                {item}
+              </Badge>
+            ) : (
+              ""
+            )
           )}
         </div>
       </div>
+      {isLoading && (
+        <div className="flex justify-center">
+          <Loader2 size={48} className="mr-2 mt-10 animate-spin" />
+        </div>
+      )}
       <InfiniteScroll
         className="grid gap-8 my-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
         dataLength={recipes?.length} //This is important field to render the next data

@@ -27,6 +27,7 @@ async function getAllDiets() {
 export default async function Index() {
   const meal = await getAllMeals();
   const diet = await getAllDiets();
+
   const filters = { meal, diet };
 
   return (

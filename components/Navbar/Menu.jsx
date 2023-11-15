@@ -36,13 +36,13 @@ function UserMenu() {
                   Home
                 </NavigationMenuLink>
               </Link>
-              <Link href="/categories" legacyBehavior passHref>
+              {/* <Link href="/categories" legacyBehavior passHref>
                 <NavigationMenuLink
                   className={`${navigationMenuTriggerStyle()} text-base text-slate-600`}
                 >
                   Categories
                 </NavigationMenuLink>
-              </Link>
+              </Link> */}
               <Link href="/recipes" legacyBehavior passHref>
                 <NavigationMenuLink
                   className={`${navigationMenuTriggerStyle()} text-base text-slate-600`}
@@ -98,11 +98,11 @@ function UserMenu() {
                 Home
               </DropdownMenuItem>
             </Link>
-            <Link href="/categories" legacyBehavior passHref>
+            {/* <Link href="/categories" legacyBehavior passHref>
               <DropdownMenuItem className="nav-item cursor-pointer md:hidden">
                 Categories
               </DropdownMenuItem>
-            </Link>
+            </Link> */}
             <Link href="/recipes" legacyBehavior passHref>
               <DropdownMenuItem className="nav-item cursor-pointer md:hidden">
                 Recipes
