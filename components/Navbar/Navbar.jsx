@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import NavSearch from "./NavSearch";
 import Menu from "./Menu";
+import SearchForm from "./SearchForm";
+import MobileSearch from "./MobileSearch";
 
 function Navbar() {
   return (
@@ -15,8 +16,14 @@ function Navbar() {
           alt="ReciFood"
         />
       </Link>
-      <NavSearch />
-
+      {/* Search Input Desktop */}
+      <div className="hidden lg:block">
+        <SearchForm />
+      </div>
+      {/* Search Input Mobile */}
+      <div className="lg:hidden">
+        <MobileSearch />
+      </div>
       <Menu />
     </nav>
   );

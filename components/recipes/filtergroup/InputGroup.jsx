@@ -6,7 +6,7 @@ import * as z from "zod";
 
 import { Input } from "@/components/ui/input";
 import FilterAction from "./FilterAction";
-import { useState } from "react";
+import { useRef } from "react";
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form";
 
 const FormSchema = z.object({
@@ -14,7 +14,7 @@ const FormSchema = z.object({
 });
 
 function InputGroup({ placeholder, handleFilterChange, clearFilter }) {
-  const [count, setCount] = useState(null);
+  const count = useRef(null);
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -22,8 +22,8 @@ function InputGroup({ placeholder, handleFilterChange, clearFilter }) {
     },
   });
 
-  function onSubmit(data) {
-    handleFilterChange(Number(count));
+  function onSubmit() {
+    handleFilterChange(Number(count.current.value));
   }
   return (
     <Form {...form}>
@@ -37,9 +37,8 @@ function InputGroup({ placeholder, handleFilterChange, clearFilter }) {
                 className="border p-2 mb-4 rounded-xl border-slate-300 hover:border-slate-500 hover:bg-slate-100 transition-all duration-100 ease-in"
                 type="number"
                 placeholder={placeholder}
-                onChange={(event) => {
-                  setCount(event.target.value);
-                }}
+                ref={count}
+                required
               />
               <FormMessage />
             </FormItem>

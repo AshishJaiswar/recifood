@@ -54,6 +54,7 @@ function TimeInput({
               </p>
               <Slider
                 defaultValue={[value]}
+                min={10}
                 max={max}
                 step={10}
                 ref={ref}

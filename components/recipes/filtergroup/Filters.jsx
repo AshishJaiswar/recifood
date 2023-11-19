@@ -42,7 +42,9 @@ function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
                 title="Select cuisine"
                 items={filters.cuisine}
                 handleFilterChange={(data) => {
-                  onFilterApply("cuisine", data);
+                  if (data.length) {
+                    onFilterApply("cuisine", data);
+                  }
                 }}
                 defaultItems={checkedItems.cuisine}
                 clearFilter={() => clearFilter({ cuisine: [] })}
@@ -65,7 +67,9 @@ function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
                 title="Select course"
                 items={filters.course}
                 handleFilterChange={(data) => {
-                  onFilterApply("course", data);
+                  if (data.length) {
+                    onFilterApply("course", data);
+                  }
                 }}
                 defaultItems={checkedItems.course}
                 clearFilter={() => clearFilter({ course: [] })}
@@ -88,7 +92,9 @@ function Filters({ filters, checkedItems, handleFilterApply, clearFilter }) {
                 title="Select diet"
                 items={filters.diet}
                 handleFilterChange={(data) => {
-                  onFilterApply("diet", data);
+                  if (data.length) {
+                    onFilterApply("diet", data);
+                  }
                 }}
                 defaultItems={checkedItems.diet}
                 clearFilter={() => clearFilter({ diet: [] })}

@@ -115,11 +115,6 @@ function RecipeGrid({ filters }) {
   };
 
   useEffect(() => {
-    getRecipeData();
-    updateRange();
-  }, []);
-
-  useEffect(() => {
     let filterItems = [];
     for (let key in checkedItems) {
       if (checkedItems[key].length || checkedItems[key] >= 1) {

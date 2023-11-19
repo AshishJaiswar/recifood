@@ -74,7 +74,8 @@ function UserMenu() {
 
       {/* Menu for Mobile */}
       <DropdownMenu id="menu-items">
-        <DropdownMenuTrigger>
+        {/* Hiding when screen size is > 768px (md) */}
+        <DropdownMenuTrigger className="md:hidden">
           {isLoggedIn ? (
             <Avatar className="md:ml-2">
               <AvatarImage src="https://github.com/shadcn.png" />
@@ -108,8 +109,9 @@ function UserMenu() {
                 Recipes
               </DropdownMenuItem>
             </Link>
-            <DropdownMenuSeparator className="md:hidden" />
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            {/* Future Implmentation */}
+            {/* <DropdownMenuSeparator className="md:hidden" /> */}
+            {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <Link href="/" legacyBehavior passHref>
               <DropdownMenuItem className="nav-item cursor-pointer">
@@ -143,7 +145,7 @@ function UserMenu() {
                 />
                 Logout
               </DropdownMenuItem>
-            </Link>
+            </Link> */}
           </DropdownMenuContent>
         ) : (
           <DropdownMenuContent>

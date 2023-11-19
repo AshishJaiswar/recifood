@@ -38,7 +38,9 @@ function RecipeCard({
               </CardContent>
             </Card>
             <div className="flex justify-between text-center absolute top-2 w-full px-2 sm:px-5 sm:top-4">
-              <Badge className="bg-zinc-800">{totalTimeInMins} min</Badge>
+              <Badge className="bg-zinc-800 hover:bg-zinc-800">
+                {totalTimeInMins} min
+              </Badge>
               <Badge
                 className={
                   isNonVeg
