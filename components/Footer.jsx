@@ -9,43 +9,37 @@ function Footer() {
           <h3 className="text-lg font-medium text-slate-700 py-5 sm:text-2xl px-10 md:px-0">
             Tools
           </h3>
-          <div
-            id="tools"
-            className="flex flex-col text-slate-600 hover:text-slate-800"
-          >
-            <Link href="" className="my-1">
+          <div id="tools" className="flex flex-col text-slate-500">
+            <Link href="/" className="my-1 hover:text-slate-900">
               Generate random recipe
             </Link>
-            <Link href="" className="my-1">
+            <Link href="/recipes" className="my-1 hover:text-slate-900">
               Explore recipes
             </Link>
-            <Link href="" className="my-1">
+            {/* <Link href="" className="my-1 hover:text-slate-900">
               Explore cuisines
-            </Link>
+            </Link> */}
           </div>
         </div>
-        <div className="text-center py-5 md:py-16  md:text-left">
+        {/* <div className="text-center py-5 md:py-16  md:text-left">
           <h3 className="text-lg font-medium text-slate-700 py-5 sm:text-2xl px-10 md:px-0">
             Socials
           </h3>
-          <div
-            id="socials"
-            className="flex flex-col text-slate-600 hover:text-slate-800"
-          >
-            <Link href="" className="my-1">
+          <div id="socials" className="flex flex-col text-slate-500 ">
+            <Link href="" className="my-1 hover:text-slate-900">
               Instagram
             </Link>
-            <Link href="" className="my-1">
+            <Link href="" className="my-1 hover:text-slate-900">
               Youtube
             </Link>
-            <Link href="" className="my-1">
+            <Link href="" className="my-1 hover:text-slate-900">
               Twitter
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="px-5">
-        <hr />
+        <hr className="border border-gray-300" />
       </div>
       <div className="flex items-center justify-between px-5">
         <Image

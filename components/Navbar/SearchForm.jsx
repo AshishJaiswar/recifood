@@ -32,7 +32,7 @@ function SearchForm() {
           name="search"
           type="text"
           placeholder="Search recipe"
-          className="lg:w-80"
+          className="lg:w-80 transition-all"
           required
         />
         <Button

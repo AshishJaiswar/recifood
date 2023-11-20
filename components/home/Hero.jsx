@@ -24,6 +24,7 @@ async function Hero({ filters }) {
             height={400}
             alt="Food Collage"
           />
+
           <div className="mt-4 p-5">
             <p>
               Embark on a culinary adventure and unlock the magic of flavors!

@@ -15,7 +15,7 @@ function RandomFilter({ filters, handleSelect }) {
         <SelectTrigger className="w-[180px] lg:w-[200px] m-2">
           <SelectValue placeholder="Select a Meal" />
         </SelectTrigger>
-        <SelectContent className="h-72 overflow-y-scroll">
+        <SelectContent>
           <SelectGroup>
             <SelectLabel>Meals</SelectLabel>
             <SelectItem value="random">Random</SelectItem>
@@ -32,7 +32,7 @@ function RandomFilter({ filters, handleSelect }) {
         <SelectTrigger className="w-[180px] lg:w-[200px] m-2">
           <SelectValue placeholder="Select a Diet" />
         </SelectTrigger>
-        <SelectContent className="h-72 overflow-y-scroll">
+        <SelectContent>
           <SelectGroup>
             <SelectLabel>Diet</SelectLabel>
             <SelectItem value="random">Random</SelectItem>

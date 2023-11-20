@@ -10,11 +10,6 @@ export async function GET(request) {
   let recipes;
   let errorMsg;
 
-  if (meal === null || meal === "" || diet === null || diet === "") {
-    console.log("Course & Diet are null");
-    return NextResponse.json([]);
-  }
-
   if (meal !== null && diet === null) {
     const { data, error } = await supabase
       .from("recipes")

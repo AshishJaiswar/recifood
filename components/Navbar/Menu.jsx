@@ -18,10 +18,13 @@ import {
 } from "@/components/ui/navigation-menu";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function UserMenu() {
+  const pathname = usePathname();
   const isLoggedIn = true;
   const active = "text-primary";
+
   return (
     <div className="flex items-center justify-center">
       {/* Menu for Desktop */}
@@ -31,7 +34,9 @@ function UserMenu() {
             <NavigationMenuItem>
               <Link href="/" legacyBehavior passHref>
                 <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} text-base ${active}`}
+                  className={`${navigationMenuTriggerStyle()} text-base focus:bg-white focus:text-primary ${
+                    pathname === "/" ? active : ""
+                  }`}
                 >
                   Home
                 </NavigationMenuLink>
@@ -45,7 +50,9 @@ function UserMenu() {
               </Link> */}
               <Link href="/recipes" legacyBehavior passHref>
                 <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} text-base text-slate-600`}
+                  className={`${navigationMenuTriggerStyle()} text-base focus:bg-white focus:text-primary  ${
+                    pathname === "/recipes" ? active : ""
+                  }`}
                 >
                   Recipes
                 </NavigationMenuLink>
