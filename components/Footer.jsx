@@ -6,7 +6,7 @@ function Footer() {
     <footer className="bg-[url('/footer_bg.png')] absolute left-0 w-full md:bg-cover md:px-28">
       <div className="container md:flex">
         <div className="text-center py-5 md:py-16 md:text-left md:mr-10">
-          <h3 className="text-lg font-medium text-slate-700 py-5 sm:text-2xl px-10 md:px-0">
+          <h3 className="text-lg font-medium text-slate-700 py-5 px-10 md:px-0">
             Tools
           </h3>
           <div id="tools" className="flex flex-col text-slate-500">
@@ -15,6 +15,25 @@ function Footer() {
             </Link>
             <Link href="/recipes" className="my-1 hover:text-slate-900">
               Explore recipes
+            </Link>
+            {/* <Link href="" className="my-1 hover:text-slate-900">
+              Explore cuisines
+            </Link> */}
+          </div>
+        </div>
+        <div className="text-center py-5 md:py-16 md:text-left md:mr-10">
+          <h3 className="text-lg font-medium text-slate-700 py-5 px-10 md:px-0">
+            Company
+          </h3>
+          <div id="company" className="flex flex-col text-slate-500">
+            <Link
+              href="/terms-of-service"
+              className="my-1 hover:text-slate-900"
+            >
+              Terms & Services
+            </Link>
+            <Link href="/privacy" className="my-1 hover:text-slate-900">
+              Privacy Policy
             </Link>
             {/* <Link href="" className="my-1 hover:text-slate-900">
               Explore cuisines

@@ -4,7 +4,7 @@ function Services() {
   return (
     <div className="my-5 md:my-12">
       <h1 className="text-3xl font-semibold my-4">Terms of Service</h1>
-      <p className="my-4">Last Updated: 20-11-2023</p>
+      <p className="my-4">Last Updated: 20-Nov-2023</p>
       <p className="my-4">
         Please read these terms and conditions carefully before using Our
         Service.
@@ -23,47 +23,52 @@ function Services() {
       <p className="my-4">For the purposes of these Terms and Conditions:</p>
       <ul className="list-disc px-3 ">
         <li className="my-4">
-          <b>Affiliate</b> means an entity that controls, is controlled by or is
-          under common control with a party, where "control" means ownership of
-          50% or more of the shares, equity interest or other securities
-          entitled to vote for election of directors or other managing
-          authority.
+          <b className="font-semibold">Affiliate</b> means an entity that
+          controls, is controlled by or is under common control with a party,
+          where "control" means ownership of 50% or more of the shares, equity
+          interest or other securities entitled to vote for election of
+          directors or other managing authority.
         </li>
         <li className="my-4">
-          <b>Country</b> refers to: Mumbai, India
+          <b className="font-semibold">Country</b> refers to: Mumbai, India
         </li>
         <li className="my-4">
-          <b>Company</b> (referred to as either "the Company", "We", "Us" or
-          "Our" in this Agreement) refers to Recifood.com
+          <b className="font-semibold">Company</b> (referred to as either "the
+          Company", "We", "Us" or "Our" in this Agreement) refers to
+          Recifood.com
         </li>
         <li className="my-4">
-          <b>Device</b> means any device that can access the Service such as a
-          computer, a cellphone or a digital tablet.
+          <b className="font-semibold">Device</b> means any device that can
+          access the Service such as a computer, a cellphone or a digital
+          tablet.
         </li>
         <li className="my-4">
-          <b>Service</b> refers to the Website.
+          <b className="font-semibold">Service</b> refers to the Website.
         </li>
         <li className="my-4">
-          <b>Terms and Conditions</b> (also referred as "Terms") mean these
-          Terms and Conditions that form the entire agreement between You and
-          the Company regarding the use of the Service.
-        </li>
-        <li className="my-4">
-          <b>Third-party Social Media Service</b> means any services or content
-          (including data, information, products or services) provided by a
-          third-party that may be displayed, included or made available by the
+          <b className="font-semibold">Terms and Conditions</b> (also referred
+          as "Terms") mean these Terms and Conditions that form the entire
+          agreement between You and the Company regarding the use of the
           Service.
         </li>
         <li className="my-4">
-          <b>Website</b> refers to Recifood.com, accessible from →{" "}
+          <b className="font-semibold">Third-party Social Media Service</b>{" "}
+          means any services or content (including data, information, products
+          or services) provided by a third-party that may be displayed, included
+          or made available by the Service.
+        </li>
+        <li className="my-4">
+          <b className="font-semibold">Website</b> refers to Recifood.com,
+          accessible from →{" "}
           <Link href="https://recifood.com" className="underline">
             recifood.com
           </Link>
         </li>
         <li className="my-4">
-          <b>You</b> means the individual accessing or using the Service, or the
-          company, or other legal entity on behalf of which such individual is
-          accessing or using the Service, as applicable.
+          <b className="font-semibold">You</b> means the individual accessing or
+          using the Service, or the company, or other legal entity on behalf of
+          which such individual is accessing or using the Service, as
+          applicable.
         </li>
       </ul>
       <p className="my-4">
@@ -73,27 +78,28 @@ function Services() {
       </p>
       <ul className="list-decimal px-3 ">
         <li className="my-4">
-          <b>Acceptance of Terms</b> <br />
+          <b className="font-semibold">Acceptance of Terms</b> <br />
           By accessing or using the Recifood application ("the App"), you agree
           to be bound by these Terms of Service and all applicable laws and
           regulations. If you do not agree with any of these terms, you are
           prohibited from using or accessing this App.
         </li>
         <li className="my-4">
-          <b>Description of Services</b> <br /> Recifood is a random food picker
-          and recipe search app, with a primary focus on Indian cuisines. The
-          app is designed to provide users with a platform to discover, explore,
-          and experiment with a variety of authentic Indian recipes.
+          <b className="font-semibold">Description of Services</b> <br />{" "}
+          Recifood is a random food picker and recipe search app, with a primary
+          focus on Indian cuisines. The app is designed to provide users with a
+          platform to discover, explore, and experiment with a variety of
+          authentic Indian recipes.
         </li>
         <li className="my-4">
-          <b>User Conduct</b> <br />
+          <b className="font-semibold">User Conduct</b> <br />
           When using Recifood, you agree not to engage in any activity that may
           disrupt the functionality of the app or compromise the security of our
           users. This includes, but is not limited to, unauthorized access, data
           scraping, or any form of unethical behavior.
         </li>
         <li className="my-4">
-          <b>Privacy</b> <br />
+          <b className="font-semibold">Privacy</b> <br />
           <p>
             We respect your privacy. Please refer to our&nbsp;
             <Link href="/privacy" className="underline">
@@ -104,7 +110,7 @@ function Services() {
           </p>
         </li>
         <li className="my-4">
-          <b>Intellectual Property</b>
+          <b className="font-semibold">Intellectual Property</b>
           <p>
             All content and materials available in the Recifood app, including
             but not limited to text, data, graphics, logos, images, and
@@ -113,7 +119,7 @@ function Services() {
           </p>
         </li>
         <li className="my-4">
-          <b>Liability</b>
+          <b className="font-semibold">Liability</b>
           <p>
             Recifood is not liable for any damages or losses arising from the
             use or inability to use our services. We do not guarantee the
@@ -121,7 +127,7 @@ function Services() {
           </p>
         </li>
         <li className="my-4">
-          <b>Changes to Terms</b>
+          <b className="font-semibold">Changes to Terms</b>
           <p>
             Recifood reserves the right to update or modify these Terms of
             Service at any time. The most current version will be posted on the
@@ -130,7 +136,7 @@ function Services() {
           </p>
         </li>
         <li className="my-4">
-          <b>Termination</b>
+          <b className="font-semibold">Termination</b>
           <p>
             Recifood reserves the right to terminate or suspend your access to
             the app, without prior notice, for any violation of these terms or
@@ -138,14 +144,14 @@ function Services() {
           </p>
         </li>
         <li className="my-4">
-          <b>Governing Law</b>
+          <b className="font-semibold">Governing Law</b>
           <p>
             These Terms of Service are governed by and construed by the laws of
             the Government of India.
           </p>
         </li>
         <li className="my-4">
-          <b>Links to Other websites</b>
+          <b className="font-semibold">Links to Other websites</b>
           <p>
             Our Service may contain links to third-party web sites or services
             that are not owned or controlled by the Company.
@@ -163,7 +169,7 @@ function Services() {
           </p>
         </li>
       </ul>
-      <h4 className="font-bold mt-6">Contact Information</h4>
+      <h4 className="font-semibold mt-6">Contact Information</h4>
       <p className="my-4">
         If you have any questions about these Terms of Service, please contact
         us at&nbsp;
