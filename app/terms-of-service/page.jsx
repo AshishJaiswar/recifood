@@ -25,17 +25,17 @@ function Services() {
         <li className="my-4">
           <b className="font-semibold">Affiliate</b> means an entity that
           controls, is controlled by or is under common control with a party,
-          where "control" means ownership of 50% or more of the shares, equity
-          interest or other securities entitled to vote for election of
-          directors or other managing authority.
+          where &quot;control&quot; means ownership of 50% or more of the
+          shares, equity interest or other securities entitled to vote for
+          election of directors or other managing authority.
         </li>
         <li className="my-4">
           <b className="font-semibold">Country</b> refers to: Mumbai, India
         </li>
         <li className="my-4">
-          <b className="font-semibold">Company</b> (referred to as either "the
-          Company", "We", "Us" or "Our" in this Agreement) refers to
-          Recifood.com
+          <b className="font-semibold">Company</b> (referred to as either
+          &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or
+          &quot;Our&quot; in this Agreement) refers to Recifood.com
         </li>
         <li className="my-4">
           <b className="font-semibold">Device</b> means any device that can
@@ -47,8 +47,8 @@ function Services() {
         </li>
         <li className="my-4">
           <b className="font-semibold">Terms and Conditions</b> (also referred
-          as "Terms") mean these Terms and Conditions that form the entire
-          agreement between You and the Company regarding the use of the
+          as &quot;Terms&quot;) mean these Terms and Conditions that form the
+          entire agreement between You and the Company regarding the use of the
           Service.
         </li>
         <li className="my-4">
@@ -79,10 +79,10 @@ function Services() {
       <ul className="list-decimal px-3 ">
         <li className="my-4">
           <b className="font-semibold">Acceptance of Terms</b> <br />
-          By accessing or using the Recifood application ("the App"), you agree
-          to be bound by these Terms of Service and all applicable laws and
-          regulations. If you do not agree with any of these terms, you are
-          prohibited from using or accessing this App.
+          By accessing or using the Recifood application (&quot;the App&quot;),
+          you agree to be bound by these Terms of Service and all applicable
+          laws and regulations. If you do not agree with any of these terms, you
+          are prohibited from using or accessing this App.
         </li>
         <li className="my-4">
           <b className="font-semibold">Description of Services</b> <br />{" "}

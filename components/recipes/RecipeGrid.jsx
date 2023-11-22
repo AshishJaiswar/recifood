@@ -163,9 +163,9 @@ function RecipeGrid({ filters }) {
           Clear All
         </Button>
         <div className="mt-2 sm:ml-2 sm:mt-0">
-          {Object.keys(checkedItems).map((item) =>
+          {Object.keys(checkedItems).map((item, index) =>
             checkedItems[item].length >= 1 || checkedItems[item] > 0 ? (
-              <Badge variant="secondary" className="mx-1 sm:mx-2">
+              <Badge key={index} variant="secondary" className="mx-1 sm:mx-2">
                 {item}
               </Badge>
             ) : (

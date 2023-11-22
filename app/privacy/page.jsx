@@ -6,10 +6,11 @@ function Privacy() {
       <h1 className="text-3xl font-semibold my-4">Privacy Policy</h1>
       <p className="my-4">Last Updated: 20-Nov-2023</p>
       <p className="my-4">
-        Welcome to Recifood! This Privacy Policy describes how Recifood ("we,"
-        "us," or "our") collects, uses, and shares your personal information
-        when you use our application. By accessing or using Recifood, you agree
-        to the terms outlined in this Privacy Policy.
+        Welcome to Recifood! This Privacy Policy describes how Recifood
+        (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) collects, uses, and
+        shares your personal information when you use our application. By
+        accessing or using Recifood, you agree to the terms outlined in this
+        Privacy Policy.
       </p>
       <ul className="list-decimal px-3">
         <li className="my-4">

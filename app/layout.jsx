@@ -35,10 +35,9 @@ export const metadata = {
         alt: "Recifood banner",
       },
     ],
+    url: "https://recifood.com",
     locale: "en_US",
     type: "website",
-    copyright: "Ashish Jaiswar",
-    url: "https://recifood.com",
   },
 };
 
