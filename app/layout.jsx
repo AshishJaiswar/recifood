@@ -27,14 +27,7 @@ export const metadata = {
     description:
       "Recifood, your ultimate culinary companion, is not just a random food picker and recipe search app",
     siteName: "Recifood",
-    images: [
-      {
-        url: "https://drive.google.com/file/d/10YS129TVctq85C7pPJMR9XVxll9IH6v6/view?usp=drive_link",
-        width: 800,
-        height: 600,
-        alt: "Recifood banner",
-      },
-    ],
+    images: "/og-image.png",
     url: "https://recifood.com",
     locale: "en_US",
     type: "website",
