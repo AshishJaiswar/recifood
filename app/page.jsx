@@ -25,32 +25,9 @@ async function getAllDiets() {
 }
 
 export default async function Index() {
-  // const meal = await getAllMeals();
-  const meal = [
-    { course: "World Breakfast" },
-    { course: "Dinner" },
-    { course: "Snack" },
-    { course: "Side Dish" },
-    { course: "Main Course" },
-    { course: "Appetizer" },
-    { course: "Lunch" },
-    { course: "Dessert" },
-    { course: "South Indian Breakfast" },
-    { course: "Indian Breakfast" },
-  ];
-  // const diet = await getAllDiets();
-  const diet = [
-    { diet: "High Protein Non Vegetarian" },
-    { diet: "Gluten Free" },
-    { diet: "Sugar Free Diet" },
-    { diet: "Eggetarian" },
-    { diet: "Non Vegetarian" },
-    { diet: "No Onion No Garlic (Sattvic)" },
-    { diet: "High Protein Vegetarian" },
-    { diet: "Vegetarian" },
-    { diet: "Diabetic Friendly" },
-    { diet: "Vegan" },
-  ];
+  const meal = await getAllMeals();
+  const diet = await getAllDiets();
+
   const filters = { meal, diet };
 
   return (
