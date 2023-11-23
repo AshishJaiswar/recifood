@@ -29,7 +29,7 @@ export const metadata = {
     siteName: "Recifood",
     images: [
       {
-        url: "https://drive.google.com/file/d/11b-_lfhPVzV1PJJXjVPs_LRwazh0p4GW/view?usp=sharing",
+        url: "https://media.graphassets.com/output=format:jpg/resize=height:800,fit:max/BX3dSx9sQZW9PUb1Q9cG",
       },
     ],
     url: "https://recifood.com",
