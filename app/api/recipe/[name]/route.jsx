@@ -11,7 +11,8 @@ export async function GET(request, { params: { name } }) {
     .select(
       "id, name, prepTimeInMins, cookTimeInMins, totalTimeInMins, servings, cuisine, course, diet, totalCaloriesInCal, link, imgURL"
     )
-    .textSearch("name", name, {
+    .textSearch("name", decodeURI(name), {
+      type: "websearch",
       config: "english",
     })
     .range(start, end);

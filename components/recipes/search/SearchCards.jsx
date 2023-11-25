@@ -33,7 +33,8 @@ function SearchCards({ name }) {
   useEffect(() => {
     (async () => {
       const data = await fetchRecipes();
-      setRecipes(data);
+      data.length > 0 ? setHasMore(true) : setHasMore(false);
+      if (data) setRecipes(data);
     })();
     updateRange();
   }, []);

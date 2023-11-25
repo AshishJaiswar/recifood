@@ -34,6 +34,12 @@ function SearchForm() {
           placeholder="Search recipe"
           className="lg:w-80 transition-all"
           required
+          onKeyDown={() => {
+            if (event.keyCode === 32) {
+              // If space is pressed prevent default behaviour
+              event.stopPropagation();
+            }
+          }}
         />
         <Button
           id="search-btn"
