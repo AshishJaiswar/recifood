@@ -35,7 +35,7 @@ function Services() {
         <li className="my-4">
           <b className="font-semibold">Company</b> (referred to as either
           &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or
-          &quot;Our&quot; in this Agreement) refers to Recifood.com
+          &quot;Our&quot; in this Agreement) refers to Recifood.fun
         </li>
         <li className="my-4">
           <b className="font-semibold">Device</b> means any device that can
@@ -58,10 +58,10 @@ function Services() {
           or made available by the Service.
         </li>
         <li className="my-4">
-          <b className="font-semibold">Website</b> refers to Recifood.com,
+          <b className="font-semibold">Website</b> refers to Recifood.fun,
           accessible from →{" "}
-          <Link href="https://recifood.com" className="underline">
-            recifood.com
+          <Link href="https://recifood.fun" className="underline">
+            recifood.fun
           </Link>
         </li>
         <li className="my-4">

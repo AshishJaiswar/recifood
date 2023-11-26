@@ -30,10 +30,10 @@ export const metadata = {
     siteName: "Recifood",
     images: [
       {
-        url: "https://media.graphassets.com/output=format:jpg/resize=height:800,fit:max/BX3dSx9sQZW9PUb1Q9cG",
+        url: "https://media.graphassets.com/c4nvksLkQFcEJOQu2xlt",
       },
     ],
-    url: "https://recifood.com",
+    url: "https://recifood.fun",
     locale: "en_US",
     type: "website",
   },
