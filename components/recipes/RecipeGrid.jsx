@@ -102,6 +102,7 @@ function RecipeGrid({ filters }) {
 
   const handleClick = () => {
     setFiltered(false);
+    setHasMore(true);
     getRecipeData();
     setRange({ start: 13, end: 24 });
     setCheckedItems({
@@ -147,6 +148,7 @@ function RecipeGrid({ filters }) {
         checkedItems={checkedItems}
         clearFilter={(clearItem) => {
           setLoading(true);
+          setHasMore(true);
           setCheckedItems({ ...checkedItems, ...clearItem });
         }}
       />
