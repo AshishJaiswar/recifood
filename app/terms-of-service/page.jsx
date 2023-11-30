@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Recifood - Terms and Services",
+};
+
 function Services() {
   return (
     <div className="my-5 md:my-12">

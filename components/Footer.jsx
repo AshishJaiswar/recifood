@@ -35,6 +35,9 @@ function Footer() {
             <Link href="/privacy" className="my-1 hover:text-slate-900">
               Privacy Policy
             </Link>
+            <Link href="/about-us" className="my-1 hover:text-slate-900">
+              About Us
+            </Link>
             {/* <Link href="" className="my-1 hover:text-slate-900">
               Explore cuisines
             </Link> */}

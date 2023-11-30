@@ -54,6 +54,10 @@ const transfromData = (data) => {
   });
 };
 
+export const metadata = {
+  title: "Recifood - Explore all recipes",
+};
+
 async function Recipes() {
   let course = await getAllMeals();
   let cuisine = await getAllCuisines();

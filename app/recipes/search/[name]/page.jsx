@@ -1,5 +1,9 @@
 import SearchCards from "@/components/recipes/search/SearchCards";
 
+export const metadata = {
+  title: "Recifood - Search Result",
+};
+
 function SearchResult({ params: { name } }) {
   return (
     <>
