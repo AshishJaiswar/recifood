@@ -38,12 +38,12 @@ function About() {
         The Need for Recifood: A Culinary Solution for Modern Living
       </h3>
       <p>
-        In today's fast-paced world, finding time for meal planning and
+        In today&apos;s fast-paced world, finding time for meal planning and
         exploring diverse recipes can be a challenge. Recifood addresses this
         need, providing a streamlined and innovative solution to culinary
         inspiration. The app becomes your culinary guide, offering a curated
         selection of recipes that align with your tastes and preferences.
-        Whether you're a busy professional, a parent juggling multiple
+        Whether you&apos;re a busy professional, a parent juggling multiple
         responsibilities, or someone simply looking to enhance your cooking
         repertoire, Recifood is here to simplify your culinary journey.
       </p>
@@ -55,19 +55,19 @@ function About() {
         a seamless user experience. Our app is built on a robust tech stack,
         including React.js & Next.js, Tailwind CSS, and the Shadcn/ui component
         library. The Supabase Postgres database ensures efficiency, while the
-        app's design is a product of thoughtful creation on Figma.
+        app&apos;s design is a product of thoughtful creation on Figma.
       </p>
       <h3 className="text-xl font-medium">
         Get Involved: Your Feedback Shapes Our Future
       </h3>
       <p>
         As we embark on this culinary adventure together, your feedback is
-        crucial. Whether you're an experienced chef or someone discovering the
-        joys of home cooking, we invite you to explore Recifood, share your
+        crucial. Whether you&apos;re an experienced chef or someone discovering
+        the joys of home cooking, we invite you to explore Recifood, share your
         thoughts, and become an integral part of our growing community.
       </p>
       <p>
-        Thank you for joining us on this exciting journey. Let's unlock the
+        Thank you for joining us on this exciting journey. Let&apos;s unlock the
         flavors of the world together!
       </p>
       <p>
