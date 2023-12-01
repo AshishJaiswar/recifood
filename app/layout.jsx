@@ -16,6 +16,9 @@ export const metadata = {
   publisher: "Ashish Jaiswar",
   keywords: [
     "Recipe",
+    "Kya khaye",
+    "What to eat",
+    "Khaye",
     "Food",
     "Lunch",
     "Breakfast",
