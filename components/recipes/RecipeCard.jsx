@@ -28,12 +28,12 @@ function RecipeCard({
             <Card>
               <CardContent className="p-0 h-64">
                 <Image
-                  className="rounded-lg transition-all duration-200 ease-in  hover:brightness-75"
+                  className="rounded-lg hover:brightness-75"
                   src={imgURL}
                   fill={true}
                   alt={name}
                   loading="lazy"
-                  quality={10}
+                  quality={1}
                 />
               </CardContent>
             </Card>

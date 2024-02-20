@@ -24,10 +24,10 @@ function RecipeGrid({ filters }) {
   }); // FilterItems data
   const [range, setRange] = useState({
     start: 1,
-    end: 12,
+    end: 8,
   });
 
-  async function fetchRecipes(start = 1, end = 12) {
+  async function fetchRecipes(start = 1, end = 8) {
     let url = `/api/recipe?start=${start}&end=${end}`;
     const res = await fetch(url);
 
@@ -38,7 +38,7 @@ function RecipeGrid({ filters }) {
     return res.json();
   }
 
-  async function fetchFilteredRecipes(checkedItems, start = 0, end = 11) {
+  async function fetchFilteredRecipes(checkedItems, start = 0, end = 7) {
     const options = {
       method: "POST",
       headers: {
@@ -68,7 +68,7 @@ function RecipeGrid({ filters }) {
 
   const updateRange = () => {
     const newStart = range.end + 1;
-    const newEnd = range.end + 12;
+    const newEnd = range.end + 8;
     setRange({ start: newStart, end: newEnd });
   };
 
@@ -104,7 +104,7 @@ function RecipeGrid({ filters }) {
     setFiltered(false);
     setHasMore(true);
     getRecipeData();
-    setRange({ start: 13, end: 24 });
+    setRange({ start: 9, end: 16 });
     setCheckedItems({
       cuisine: [],
       course: [],
@@ -131,7 +131,7 @@ function RecipeGrid({ filters }) {
     }
     if (isFiltered) {
       getFilteredRecipes(checkedItems);
-      setRange({ start: 12, end: 23 });
+      setRange({ start: 8, end: 16 });
     }
     setLoading(false);
   }, [checkedItems]);
@@ -188,10 +188,6 @@ function RecipeGrid({ filters }) {
         hasMore={hasMore}
         loader={
           <>
-            <RecipeCardSkeleton />
-            <RecipeCardSkeleton />
-            <RecipeCardSkeleton />
-            <RecipeCardSkeleton />
             <RecipeCardSkeleton />
             <RecipeCardSkeleton />
             <RecipeCardSkeleton />
